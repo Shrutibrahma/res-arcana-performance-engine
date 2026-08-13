@@ -1,0 +1,55 @@
+{
+  "name": "TestElvishBowPower1FailsWhenTurned",
+  "description": "Elvish Bow Power 1 fails if already turned.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Elvish Bow"], ["Magical Shard"]],
+    "starting_essences": [{"elan": 2, "life": 1}, {"life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Elvish Bow",
+      "pay": {"elan": 2, "life": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Magical Shard",
+      "pay": {},
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Elvish Bow",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Elvish Bow", "player_id": 0},
+    {"__type__": "LifeLossChoice", "player_id": 1, "pay": {"life": 1}},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Elvish Bow",
+        "power_index": 1,
+        "player_id": 0
+      }
+    }
+  ]
+}

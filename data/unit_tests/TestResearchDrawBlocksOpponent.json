@@ -1,0 +1,55 @@
+{
+  "name": "TestResearchDrawBlocksOpponent",
+  "description": "Draw from Research must resolve before the opponent can act.\n\nRegression: PendingDrawChoice was non-blocking, allowing the opponent to\npass (pushing their own PendingDrawChoice) before the Research draw resolved.\nWith LIFO stack ordering, the later draw could consume the deck card meant\nfor the earlier draw.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [
+      ["Athanor", "Cursed Skull", "Dragon Egg", "Vault"],
+      ["Hawk", "Guard Dog", "Treant"]
+    ],
+    "starting_essences": [{"elan": 1}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Calm/Elan", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Calm/Elan",
+      "player_id": 1,
+      "gain": {"calm": 1}
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Research",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "DiscardForEssences",
+        "card_name": "Hawk",
+        "gain": {"elan": 2},
+        "player_id": 1
+      }
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Vault"],
+      "known_cards": []
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 1}
+  ]
+}

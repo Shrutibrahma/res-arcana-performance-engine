@@ -1,0 +1,71 @@
+{
+  "name": "TestNecromancerPowerAccumulates",
+  "description": "Power 0: Death accumulates on mage across multiple uses.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Necromancer"]],
+    "artifact_decks": [["Chalice of Fire"]],
+    "starting_essences": [{"elan": 2, "life": 4, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Necromancer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Chalice of Fire",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Necromancer",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"life": 2},
+      "gain": {"death": 3}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Necromancer",
+      "death": 3,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Necromancer", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Chalice of Fire",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Necromancer",
+      "pay": {"elan": 1}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Necromancer",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Chalice of Fire", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Necromancer",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"life": 2},
+      "gain": {"death": 3}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Necromancer",
+      "death": 6,
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1}
+  ]
+}

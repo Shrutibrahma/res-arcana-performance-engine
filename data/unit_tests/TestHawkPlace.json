@@ -1,0 +1,27 @@
+{
+  "name": "TestHawkPlace",
+  "description": "Hawk costs 1L + 1C to place.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Hawk"]],
+    "starting_essences": [{"life": 1, "calm": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hawk",
+      "pay": {"life": 1, "calm": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0}
+  ]
+}

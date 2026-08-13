@@ -1,0 +1,48 @@
+{
+  "name": "TestCorruptAltarPower1DestroysArtifactForCostPlus2",
+  "description": "Corrupt Altar Power 1: Turn + destroy artifact to gain its cost + 2 as any.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Corrupt Altar", "Hawk"]],
+    "starting_essences": [{"elan": 3, "life": 1, "calm": 1, "death": 2}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Corrupt Altar",
+      "pay": {"elan": 3, "death": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hawk",
+      "pay": {"life": 1, "calm": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Corrupt Altar",
+      "power_index": 1,
+      "player_id": 0,
+      "target_name": "Hawk",
+      "gain": {"calm": 4}
+    },
+    {"__type__": "AssertTurned", "card_name": "Corrupt Altar", "player_id": 0},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "calm": 4}
+  ]
+}

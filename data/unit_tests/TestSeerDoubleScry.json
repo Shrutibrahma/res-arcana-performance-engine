@@ -1,0 +1,102 @@
+{
+  "name": "TestSeerDoubleScry",
+  "description": "Scry twice across rounds: second scry sees already-known cards.\n\nRound 1: Scry 3, reorder to [Vault, Hawk, Prism], draw Vault + Hawk.\nRound 2: Scry again. Prism is still known at position 0, plus\nDwarven Pickaxe is revealed as unknown. Reorder and verify draw order.\n\nThis exercises the invariant that re-scrying known cards doesn't\ncorrupt their positions (no bumping needed).",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Seer"], ["Alchemist"]],
+    "artifact_decks": [
+      [
+        "Athanor",
+        "Cursed Skull",
+        "Dragon Egg",
+        "Prism",
+        "Hawk",
+        "Vault",
+        "Dwarven Pickaxe"
+      ],
+      []
+    ],
+    "starting_essences": [{"elan": 1}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Prism", "Hawk", "Vault"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [2, 1, 0]},
+    {
+      "__type__": "UsePower",
+      "card_name": "Research",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1}
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": [],
+      "known_cards": ["Vault"]
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": [],
+      "known_cards": ["Hawk"]
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Dwarven Pickaxe"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [1, 0]},
+    {"__type__": "Pass", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": [],
+      "known_cards": ["Dwarven Pickaxe"]
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dwarven Pickaxe",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 3}
+    }
+  ]
+}

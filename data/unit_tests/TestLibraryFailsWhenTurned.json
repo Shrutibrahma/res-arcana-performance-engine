@@ -1,0 +1,36 @@
+{
+  "name": "TestLibraryFailsWhenTurned",
+  "description": "Library power fails if already turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Library"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"gold": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Library", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Library",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Library", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Library",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

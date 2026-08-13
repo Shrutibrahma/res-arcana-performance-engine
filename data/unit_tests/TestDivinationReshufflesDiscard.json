@@ -1,0 +1,62 @@
+{
+  "name": "TestDivinationReshufflesDiscard",
+  "description": "Divination: Reshuffles discard when deck has fewer than 3 cards.\n\nSetup: 3 in hand, 2 in deck. Discard 1 from hand first -> 2 hand, 2 deck, 1 discard.\nThen use Divination -> draws 2 from deck, reshuffles discard, draws 1 more = 3 total.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism", "Hawk"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Divination", "player_id": 0},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Dragon Egg",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dragon Egg",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Divination",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Dragon Egg", "Prism", "Hawk"]
+    },
+    {"__type__": "AssertTurned", "card_name": "Divination", "player_id": 0},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dragon Egg",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "DiscardChoice",
+      "card_names": ["Dragon Egg", "Prism", "Hawk"],
+      "player_id": 0
+    }
+  ]
+}

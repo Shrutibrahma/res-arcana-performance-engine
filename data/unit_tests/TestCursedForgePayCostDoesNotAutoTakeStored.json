@@ -1,0 +1,69 @@
+{
+  "name": "TestCursedForgePayCostDoesNotAutoTakeStored",
+  "description": "Regression: Paying collect cost must NOT auto-take stored essences.\n\nThe collect cost (pay 1D or turn) is SEPARATE from taking stored essences.\nPlayer should get a separate TakeStored choice after paying the cost.\n\nPreviously, the engine incorrectly auto-transferred stored gold to the\nplayer's pool when they paid the collect cost, without offering a choice.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Cursed Forge"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"elan": 8, "death": 4, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Cursed Forge",
+      "pay": {"elan": 6, "death": 3},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "death": 1, "gold": 1},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 2},
+    {
+      "__type__": "UsePower",
+      "card_name": "Cursed Forge",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 2, "gold": 1},
+      "gain": {"gold": 1}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1},
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Cursed Forge",
+      "gold": 1,
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 3},
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "CollectCost",
+      "card_name": "Cursed Forge",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 0}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Cursed Forge",
+      "gold": 1,
+      "player_id": 0
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Cursed Forge",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 4}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Cursed Forge",
+      "gold": 1,
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 3}
+  ]
+}

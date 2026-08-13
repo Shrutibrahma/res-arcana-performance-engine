@@ -1,0 +1,28 @@
+{
+  "name": "TestCannotUseClaimMonumentForDeck",
+  "description": "ActionClaimMonument cannot be used for monuments in the deck.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": ["Great Pyramid"],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"gold": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "ClaimMonument",
+        "monument_name": "Great Pyramid",
+        "player_id": 0
+      }
+    },
+    {"__type__": "ClaimTopMonument", "player_id": 0}
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "name": "TestOracleScryMonumentDeckReorder",
+  "description": "Oracle scry reorders monument deck - verified by claiming.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Oracle"],
+    "monument_deck": ["Great Pyramid", "Temple", "Library", "Mausoleum"],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"gold": 20}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Oracle", "player_id": 0},
+    {
+      "__type__": "ResolveMonumentReveal",
+      "monument_name": "Great Pyramid",
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Oracle",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 1}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Temple", "Library", "Mausoleum"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [2, 1, 0]},
+    {
+      "__type__": "ClaimMonument",
+      "monument_name": "Great Pyramid",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveMonumentReveal",
+      "monument_name": "Mausoleum",
+      "player_id": 0
+    },
+    {"__type__": "AssertOwner", "card_name": "Great Pyramid", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Mausoleum", "player_id": 0},
+    {
+      "__type__": "ResolveMonumentReveal",
+      "monument_name": "Library",
+      "player_id": 0
+    },
+    {"__type__": "AssertOwner", "card_name": "Mausoleum", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Library", "player_id": 0},
+    {
+      "__type__": "ResolveMonumentReveal",
+      "monument_name": "Temple",
+      "player_id": 0
+    },
+    {"__type__": "AssertOwner", "card_name": "Library", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Temple", "player_id": 0},
+    {"__type__": "AssertOwner", "card_name": "Temple", "player_id": 0}
+  ]
+}

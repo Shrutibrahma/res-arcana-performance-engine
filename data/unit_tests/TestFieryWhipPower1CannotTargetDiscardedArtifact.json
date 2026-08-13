@@ -1,0 +1,48 @@
+{
+  "name": "TestFieryWhipPower1CannotTargetDiscardedArtifact",
+  "description": "Fiery Whip Power 1 cannot target an artifact already in discard pile.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Fiery Whip", "Hawk", "Magical Shard"]],
+    "starting_essences": [{"elan": 2, "death": 2, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Fiery Whip",
+      "pay": {"elan": 2, "death": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Hawk",
+      "gain": {"gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Fiery Whip",
+        "power_index": 1,
+        "player_id": 0,
+        "target_name": "Hawk",
+        "gain": {"elan": 4}
+      }
+    }
+  ]
+}

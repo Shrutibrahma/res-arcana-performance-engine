@@ -1,0 +1,63 @@
+{
+  "name": "TestGoldenStatueMidRoundNoWinnerTurnAdvances",
+  "description": "Mid-round victory check with no winner advances turn to next player.\n\nThis is a regression test for a bug where advance_to_next_player() was\ncalled during VICTORY_CHECK phase instead of after returning to ACTIONS.\nAfter a mid-round victory check resolves with no winner, the turn should\nadvance to the next non-passed player.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Coral Castle"],
+    "monument_display": ["Golden Statue"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [[], ["Dwarven Pickaxe", "Vault"]],
+    "starting_essences": [{"elan": 5, "life": 5, "calm": 5, "gold": 4}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Research", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 0
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 0},
+    {
+      "__type__": "ClaimMonument",
+      "monument_name": "Golden Statue",
+      "player_id": 0
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 1},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Dwarven Pickaxe",
+      "gain": {"elan": 2},
+      "player_id": 1
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Coral Castle",
+      "pay": {"elan": 5, "life": 5, "calm": 5},
+      "player_id": 0
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 1},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Vault",
+      "gain": {"calm": 2},
+      "player_id": 1
+    },
+    {"__type__": "AssertCurrentPlayer", "player_id": 0},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 5},
+    {
+      "__type__": "UsePower",
+      "card_name": "Coral Castle",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 4}},
+    {"__type__": "AssertCurrentPlayer", "player_id": 1}
+  ]
+}

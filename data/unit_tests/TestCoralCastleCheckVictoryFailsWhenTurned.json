@@ -1,0 +1,41 @@
+{
+  "name": "TestCoralCastleCheckVictoryFailsWhenTurned",
+  "description": "Coral Castle Power 0 fails if already turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Coral Castle"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "starting_essences": [{"elan": 5, "life": 5, "calm": 5}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Coral Castle",
+      "pay": {"elan": 5, "life": 5, "calm": 5},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Coral Castle",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Coral Castle", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Coral Castle",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

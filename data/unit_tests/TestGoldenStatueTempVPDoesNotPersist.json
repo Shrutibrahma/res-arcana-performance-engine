@@ -1,0 +1,54 @@
+{
+  "name": "TestGoldenStatueTempVPDoesNotPersist",
+  "description": "Temp VP from react only applies to that victory check, not subsequent ones.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Coral Castle"],
+    "monument_display": ["Golden Statue"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "starting_essences": [{"elan": 5, "life": 5, "calm": 5, "gold": 7}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimMonument",
+      "monument_name": "Golden Statue",
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Coral Castle",
+      "pay": {"elan": 5, "life": 5, "calm": 5},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 5},
+    {
+      "__type__": "UsePower",
+      "card_name": "Coral Castle",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 5}},
+    {
+      "__type__": "VictoryReact",
+      "card_name": "Golden Statue",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"gold": 3}
+    },
+    {"__type__": "AssertTurned", "card_name": "Golden Statue", "player_id": 0},
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 4}},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 5},
+    {"__type__": "Pass", "item_name": "Research", "player_id": 0},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 5}
+  ]
+}

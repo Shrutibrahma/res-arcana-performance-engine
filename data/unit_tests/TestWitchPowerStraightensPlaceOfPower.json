@@ -1,0 +1,58 @@
+{
+  "name": "TestWitchPowerStraightensPlaceOfPower",
+  "description": "Power 0: Can straighten a turned Place of Power.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Catacombs of the Dead"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Witch"]],
+    "starting_essences": [{"calm": 2, "death": 9}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Witch", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Witch",
+      "gain": {"life": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Catacombs of the Dead",
+      "pay": {"death": 9},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Catacombs of the Dead",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {"death": 1}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Catacombs of the Dead",
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Witch",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Catacombs of the Dead",
+      "pay": {"calm": 2}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Catacombs of the Dead",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Witch", "player_id": 0}
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "name": "TestVaultCollectBonusWhenGoldStoredAndNotTaken",
+  "description": "Vault conditional collect: Gold stored + not taken = gain 2 non-Gold any.\n\nTakeStored with decision=LEAVE_STORED triggers _grant_conditional_bonus which creates\na pending ESSENCE_CHOICE for the 2-any bonus. The test then resolves that\nchoice with a Gain action.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Vault"]],
+    "starting_essences": [{"elan": 1, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Vault",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Vault",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {"gold": 1}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Vault",
+      "gold": 1,
+      "player_id": 0
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "TakeStored",
+      "card_name": "Vault",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 4}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Vault",
+      "gold": 1,
+      "player_id": 0
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Vault",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2}
+  ]
+}

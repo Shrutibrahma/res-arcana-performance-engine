@@ -1,0 +1,60 @@
+{
+  "name": "TestDragonBridleReactFailsAgainstNonDragon",
+  "description": "Dragon Bridle react only works against dragon attacks, not other damage.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Dragon Bridle", "Guard Dog"], ["Elvish Bow"]],
+    "starting_essences": [{"elan": 2, "life": 1, "calm": 1, "death": 1}, {"elan": 2, "life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Bridle",
+      "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Elvish Bow",
+      "pay": {"elan": 2, "life": 1},
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Guard Dog",
+      "pay": {"elan": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Elvish Bow",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "LifeLossReact",
+        "card_name": "Dragon Bridle",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

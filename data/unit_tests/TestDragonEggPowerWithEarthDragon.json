@@ -1,0 +1,50 @@
+{
+  "name": "TestDragonEggPowerWithEarthDragon",
+  "description": "Dragon Egg Power: Works with Earth Dragon (3L+4E -> 3L+0E).\n\nTwo-stage placement:\n- Stage 1: Use power (destroy self)\n- Stage 2: Place Earth Dragon at discounted cost",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Dragon Egg", "Earth Dragon"]],
+    "starting_essences": [{"life": 3, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Egg",
+      "pay": {"gold": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "life": 3},
+    {
+      "__type__": "UsePower",
+      "card_name": "Dragon Egg",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dragon Egg",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Earth Dragon",
+      "pay": {"life": 3},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Earth Dragon",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    }
+  ]
+}

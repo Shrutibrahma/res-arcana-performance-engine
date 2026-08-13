@@ -1,0 +1,3100 @@
+{
+  "mages": [
+    {
+      "name": "Alchemist",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 4 any to gain 2 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 4
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 1 any",
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Artificer",
+      "discount": {
+        "artifact": 1
+      }
+    },
+    {
+      "name": "Druid",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to straighten a creature",
+          "costs": [
+            {
+              "type": "SelectCard",
+              "filter": {
+                "location": "IN_PLAY",
+                "require_tapped": true,
+                "card_type_mask": 4,
+                "own_cards_only": true
+              }
+            }
+          ],
+          "effects": [
+            {
+              "type": "Straighten",
+              "target": "SELECTED"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Duelist",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Death to store 1 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Healer",
+      "powers": [
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "choice_mask": 6
+      }
+    },
+    {
+      "name": "Necromancer",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 2 Life to store 3 Death",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                2,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                3,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Scholar",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 any to draw a card",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "Draw",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Seer",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to scry 3 cards (may also use on Monument deck)",
+          "effects": [
+            {
+              "type": "Scry",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Transmuter",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 2 any to gain 3 any",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 2
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Witch",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 2 any to straighten a component",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 2
+            },
+            {
+              "type": "SelectCard",
+              "filter": {
+                "location": "IN_PLAY",
+                "require_tapped": true,
+                "own_cards_only": true
+              }
+            }
+          ],
+          "effects": [
+            {
+              "type": "Straighten",
+              "target": "SELECTED"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "choice_mask": 10
+      }
+    }
+  ],
+  "magic_items": [
+    {
+      "name": "Alchemy",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 4 any to gain 2 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 4
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Calm/Elan",
+      "collect_ability": {
+        "choice_mask": 5
+      }
+    },
+    {
+      "name": "Death/Life",
+      "collect_ability": {
+        "choice_mask": 10
+      }
+    },
+    {
+      "name": "Divination",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to draw 3 cards, add to hand, discard 3",
+          "effects": [
+            {
+              "type": "Draw",
+              "amount": 3,
+              "discard_after": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Protection",
+      "powers": [
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reanimate",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 any to straighten a component",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            },
+            {
+              "type": "SelectCard",
+              "filter": {
+                "location": "IN_PLAY",
+                "require_tapped": true,
+                "own_cards_only": true
+              }
+            }
+          ],
+          "effects": [
+            {
+              "type": "Straighten",
+              "target": "SELECTED"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Research",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 any to draw a card",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "Draw",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Transmutation",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 3 any to gain 3 any",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 3
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "Athanor",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Elan to store 2 Elan",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                2,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and remove 6 Elan from this card and spend any identical essences to gain that many Gold",
+          "costs": [
+            {
+              "type": "RemoveFromCard",
+              "essences": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainGoldEqualToSameSpent"
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Bone Dragon",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 2 Life. They can spend Death to ignore",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 2,
+              "defense_options": [
+                {
+                  "type": "PayEssence",
+                  "essences": [
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        1,
+        0,
+        4,
+        0
+      ],
+      "card_type_mask": 2,
+      "victory_points": 1
+    },
+    {
+      "name": "Celestial Horse",
+      "collect_ability": {
+        "any_amount": 2,
+        "restriction_mask": 24
+      },
+      "placement_cost": [
+        1,
+        0,
+        2,
+        0,
+        0
+      ],
+      "card_type_mask": 4
+    },
+    {
+      "name": "Chalice of Fire",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Elan to straighten a component",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "SelectCard",
+              "filter": {
+                "location": "IN_PLAY",
+                "require_tapped": true,
+                "own_cards_only": true
+              }
+            }
+          ],
+          "effects": [
+            {
+              "type": "Straighten",
+              "target": "SELECTED"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Chalice of Life",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 2 Calm to store Calm+Calm+Life",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                2,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                1,
+                2,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        0,
+        1,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Corrupt Altar",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 2 Life to store 3 Elan",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                2,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                3,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and destroy any one of your artifacts to gain its placement cost + 2 as any",
+          "costs": [
+            {
+              "type": "DestroyComponent",
+              "destroy_mode": "ANY"
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainDestroyedCost",
+              "as_any": true,
+              "bonus": 2
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "placement_cost": [
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "placement_cost_any": 3
+    },
+    {
+      "name": "Crypt",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 2 Death",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Death to place one of your discards at its placement cost -2",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Place",
+              "filter": {
+                "location": "DISCARD",
+                "own_cards_only": true
+              },
+              "discount": 2
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      "placement_cost_any": 3
+    },
+    {
+      "name": "Cursed Skull",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Life to store 3 any",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "any_amount": 3,
+              "exclude": [
+                "GOLD",
+                "LIFE"
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "Dancing Sword",
+      "powers": [
+        {
+          "power_type": "IGNORE",
+          "react_trigger": "DAMAGE",
+          "effect_description": "Spend 1 Elan to store 1 Death and ignore damage",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "placement_cost": [
+        1,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Dragon Bridle",
+      "powers": [
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DRAGON_ATTACK",
+          "effect_description": "Turn to ignore Dragon's power",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      "victory_points": 1,
+      "discount": {
+        "dragon": 3
+      }
+    },
+    {
+      "name": "Dragon Egg",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Destroy to place a dragon at its placement cost -4",
+          "costs": [
+            {
+              "type": "DestroyComponent",
+              "destroy_mode": "SELF"
+            }
+          ],
+          "effects": [
+            {
+              "type": "Place",
+              "filter": {
+                "location": "HAND",
+                "card_type_mask": 2,
+                "own_cards_only": true
+              },
+              "discount": 4
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Dragon Teeth",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 2 Elan to store 3 Elan",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                2,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                3,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 3 Elan to place a Dragon for free",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                3,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Place",
+              "filter": {
+                "location": "HAND",
+                "card_type_mask": 2,
+                "own_cards_only": true
+              },
+              "free": true
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        1,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Dwarven Pickaxe",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Elan to gain 1 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Earth Dragon",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 2 Life. They can spend Gold to ignore",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 2,
+              "defense_options": [
+                {
+                  "type": "PayEssence",
+                  "essences": [
+                    0,
+                    0,
+                    0,
+                    0,
+                    1
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        4,
+        3,
+        0,
+        0,
+        0
+      ],
+      "card_type_mask": 2,
+      "victory_points": 1
+    },
+    {
+      "name": "Elemental Spring",
+      "powers": [
+        {
+          "power_type": "IGNORE",
+          "react_trigger": "DAMAGE",
+          "effect_description": "Spend 1 Calm to ignore damage",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                1,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          1,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        2,
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Elvish Bow",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 1 Life",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to draw 1 card",
+          "effects": [
+            {
+              "type": "Draw",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        2,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Fiery Whip",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 3 Elan. All rivals gain 1 Elan",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                3,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "RivalsGain",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and destroy another of your artifacts to gain its placement cost + 2 as any",
+          "costs": [
+            {
+              "type": "DestroyComponent",
+              "destroy_mode": "ANOTHER"
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainDestroyedCost",
+              "as_any": true,
+              "bonus": 2
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        2,
+        0,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "Fire Dragon",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 2 Life. They can spend Calm to ignore",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 2,
+              "defense_options": [
+                {
+                  "type": "PayEssence",
+                  "essences": [
+                    0,
+                    0,
+                    1,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        6,
+        0,
+        0,
+        0,
+        0
+      ],
+      "card_type_mask": 2,
+      "victory_points": 1
+    },
+    {
+      "name": "Flaming Pit",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Life to gain Elan+Death",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                1,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        2,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Fountain of Youth",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 2 Death to store Calm+Calm+Life",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                2,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                1,
+                2,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Guard Dog",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "usable_when_turned": true,
+          "effect_description": "Spend 1 Elan to straighten this card",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Straighten",
+              "target": "SELF"
+            }
+          ]
+        },
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "card_type_mask": 4
+    },
+    {
+      "name": "Hand of Glory",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 2 Death. All rivals gain 1 Death",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                2,
+                0
+              ]
+            },
+            {
+              "type": "RivalsGain",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Hawk",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to scry 3 cards (may also use on Monument deck)",
+          "effects": [
+            {
+              "type": "Scry",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 2 Calm to draw a card",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                2,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Draw",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "card_type_mask": 4
+    },
+    {
+      "name": "Horn of Plenty",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 3 any",
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 1 Gold",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        0,
+        0,
+        2
+      ]
+    },
+    {
+      "name": "Hypnotic Basin",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain Calm equal to one opponent's total Elan",
+          "costs": [
+            {
+              "type": "SelectPlayer",
+              "opponent_only": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainFromOpponent",
+              "their_essence": "ELAN",
+              "your_essence": "CALM"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        1,
+        0,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Jeweled Statuette",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 3 Death. All rivals gain 1 Death",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                3,
+                0
+              ]
+            },
+            {
+              "type": "RivalsGain",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "effect_description": "Destroy to gain Gold+Gold+Elan",
+          "costs": [
+            {
+              "type": "DestroyComponent",
+              "destroy_mode": "SELF"
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                1,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        0,
+        2,
+        1
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Magical Shard",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 1 any",
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mermaid",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend Calm/Life/Gold to store it on any component",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1,
+              "exclude": [
+                "ELAN",
+                "DEATH"
+              ]
+            },
+            {
+              "type": "SelectCard",
+              "filter": {
+                "location": "IN_PLAY",
+                "own_cards_only": true
+              }
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "what_spent": true,
+              "on_target": true
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        0,
+        2,
+        2,
+        0,
+        0
+      ],
+      "card_type_mask": 4
+    },
+    {
+      "name": "Nightingale",
+      "placement_cost": [
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "card_type_mask": 4,
+      "victory_points": 1
+    },
+    {
+      "name": "Philosopher's Stone",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn + 2 any + X identical to gain X Gold",
+          "costs": [
+            {
+              "type": "PayIdentical",
+              "min_amount": 0,
+              "base_cost": 2
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainGoldFromCost",
+              "divisor": 1
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Prism",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 any to gain 2 any",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend any identical essences to gain same amount of another type",
+          "effects": [
+            {
+              "type": "GainSameTypeAsSpent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ring of Midas",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 2 Life to store 1 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                2,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to store 1 Gold",
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Sacrificial Dagger",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Life to store 3 Death",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                3,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "effect_description": "Destroy and discard a card to gain its placement cost in any",
+          "costs": [
+            {
+              "type": "DestroyComponent",
+              "destroy_mode": "SELF"
+            },
+            {
+              "type": "DiscardCard",
+              "exclude_entity_flags": 2
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainDestroyedCost",
+              "as_any": true
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Sea Serpent",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 2 Life. They can destroy an artifact to ignore",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 2,
+              "defense_options": [
+                {
+                  "type": "DestroyComponent",
+                  "destroy_mode": "ANY"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        3,
+        6,
+        0,
+        0
+      ],
+      "card_type_mask": 6,
+      "victory_points": 1
+    },
+    {
+      "name": "Treant",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain Elan equal to one opponent's total Death",
+          "costs": [
+            {
+              "type": "SelectPlayer",
+              "opponent_only": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainFromOpponent",
+              "their_essence": "DEATH",
+              "your_essence": "ELAN"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      },
+      "placement_cost": [
+        2,
+        3,
+        0,
+        0,
+        0
+      ],
+      "card_type_mask": 4
+    },
+    {
+      "name": "Tree of Life",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 3 Life. All rivals gain 1 Life",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                3,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "type": "RivalsGain",
+              "essences": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "IGNORE",
+          "react_trigger": "DAMAGE",
+          "effect_description": "Spend 1 Life to ignore damage",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "placement_cost_any": 2
+    },
+    {
+      "name": "Vault",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to store 1 Gold",
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "alt_any_amount": 2,
+        "restriction_mask": 16,
+        "conditional_type": "STORED_GOLD"
+      },
+      "placement_cost": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "placement_cost_any": 1
+    },
+    {
+      "name": "Water Dragon",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 2 Life. They can spend Elan to ignore",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 2,
+              "defense_options": [
+                {
+                  "type": "PayEssence",
+                  "essences": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    0
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        6,
+        0,
+        0
+      ],
+      "card_type_mask": 2,
+      "victory_points": 1
+    },
+    {
+      "name": "Wind Dragon",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to damage rivals by 2 Life. They can discard a card from hand to ignore",
+          "effects": [
+            {
+              "type": "Damage",
+              "amount": 2,
+              "defense_options": [
+                {
+                  "type": "DiscardCard"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        0,
+        4,
+        0,
+        0
+      ],
+      "placement_cost_any": 4,
+      "card_type_mask": 2,
+      "victory_points": 1
+    },
+    {
+      "name": "Windup Man",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 any to store it",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "what_spent": true
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "conditional_type": "PER_STORED_ESSENCE",
+        "per_stored_essence_multiplier": 2
+      },
+      "placement_cost": [
+        1,
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  ],
+  "monuments": [
+    {
+      "name": "Colossus",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 any to store 1 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "victory_points": 2
+    },
+    {
+      "name": "Golden Statue",
+      "powers": [
+        {
+          "power_type": "VICTORY",
+          "requires_turn": true,
+          "react_trigger": "VICTORY_CHECK",
+          "effect_description": "React to checking victory. Turn and spend 3 Gold to gain 3 VP for this check only",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                3
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "TempVP",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Great Pyramid",
+      "victory_points": 3
+    },
+    {
+      "name": "Hanging Gardens",
+      "collect_ability": {
+        "any_amount": 3,
+        "restriction_mask": 16
+      },
+      "victory_points": 1
+    },
+    {
+      "name": "Library",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to draw 1 card",
+          "effects": [
+            {
+              "type": "Draw",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Mausoleum",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 1 any to store 1 Death",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "victory_points": 2
+    },
+    {
+      "name": "Obelisk",
+      "powers": [
+        {
+          "power_type": "BOUGHT",
+          "effect_description": "When bought, gain 6 any",
+          "effects": [
+            {
+              "type": "GainAny",
+              "amount": 6
+            }
+          ]
+        }
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Oracle",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to scry 3 cards (may also use on Monument deck)",
+          "effects": [
+            {
+              "type": "Scry",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "victory_points": 2
+    },
+    {
+      "name": "Solomon's Mine",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 1 Gold",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "victory_points": 1
+    },
+    {
+      "name": "Temple",
+      "powers": [
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      "victory_points": 2
+    }
+  ],
+  "places_of_power": [
+    {
+      "name": "Dragon's Lair",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to gain 2 Gold",
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn this and turn a Dragon to store 2 Gold",
+          "costs": [
+            {
+              "type": "TurnComponent",
+              "turnable_type": "DRAGON"
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        3,
+        3,
+        3,
+        3,
+        0
+      ],
+      "discount": {
+        "dragon": 3
+      },
+      "points_per_essence": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Sorcerer's Bestiary",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to check victory",
+          "effects": [
+            {
+              "type": "CheckVictory"
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 4 any to place a Dragon from any player's discard pile at its placement cost",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "any_amount": 4
+            }
+          ],
+          "effects": [
+            {
+              "type": "Place",
+              "filter": {
+                "location": "ANY_DISCARD",
+                "card_type_mask": 2
+              }
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        2,
+        4,
+        2,
+        2,
+        0
+      ],
+      "vp_per_dragon": 2,
+      "vp_per_creature": 1
+    },
+    {
+      "name": "Coral Castle",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to check victory",
+          "effects": [
+            {
+              "type": "CheckVictory"
+            }
+          ]
+        },
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        5,
+        5,
+        5,
+        0,
+        0
+      ],
+      "base_points": 3
+    },
+    {
+      "name": "Sunken Reef",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend Calm+Calm+Life to store 1 Calm",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                1,
+                2,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                1,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "placement_cost": [
+        2,
+        2,
+        5,
+        0,
+        0
+      ],
+      "points_per_essence": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Sacred Grove",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 1 Calm to gain 5 Life",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                1,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                5,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and turn a creature to store 1 Life",
+          "costs": [
+            {
+              "type": "TurnComponent",
+              "turnable_type": "CREATURE"
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                1,
+                0,
+                0,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        0,
+        8,
+        4,
+        0,
+        0
+      ],
+      "points_per_essence": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "base_points": 2
+    },
+    {
+      "name": "Alchemist's Tower",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend Death+Elan+Calm+Life to store 1 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                1,
+                1,
+                1,
+                1,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "IGNORE",
+          "requires_turn": true,
+          "react_trigger": "DAMAGE",
+          "effect_description": "Turn to ignore damage",
+          "effects": [
+            {
+              "type": "IgnoreDamage"
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "any_amount": 3,
+        "restriction_mask": 16
+      },
+      "placement_cost": [
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "points_per_essence": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Catacombs of the Dead",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend 5 Death to store 1 Death",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                5,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn to store 1 Death",
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "placement_cost": [
+        0,
+        0,
+        0,
+        9,
+        0
+      ],
+      "points_per_essence": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Sacrificial Pit",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 3 Life to store 1 Death",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                3,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn, spend 1 Death and destroy one of your Dragons or Creatures to gain its placement cost in Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "type": "DestroyCardType",
+              "card_type_mask": 6
+            }
+          ],
+          "effects": [
+            {
+              "type": "GainDestroyedCost",
+              "as_gold": true
+            }
+          ]
+        }
+      ],
+      "placement_cost": [
+        8,
+        0,
+        0,
+        4,
+        0
+      ],
+      "points_per_essence": [
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      "base_points": 2
+    },
+    {
+      "name": "Cursed Forge",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "effect_description": "Spend Elan+Elan+Gold to store 1 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                2,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "cost_essences": [
+          0,
+          0,
+          0,
+          1,
+          0
+        ],
+        "cost_turn": true
+      },
+      "placement_cost": [
+        6,
+        0,
+        0,
+        3,
+        0
+      ],
+      "points_per_essence": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "base_points": 1
+    },
+    {
+      "name": "Dwarven Mines",
+      "powers": [
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend 5 Elan to gain 3 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Gain",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "power_type": "ACTION",
+          "requires_turn": true,
+          "effect_description": "Turn and spend Elan+Elan+Elan+Death+Death+Death to store 2 Gold",
+          "costs": [
+            {
+              "type": "PayEssence",
+              "essences": [
+                3,
+                0,
+                0,
+                3,
+                0
+              ]
+            }
+          ],
+          "effects": [
+            {
+              "type": "Store",
+              "essences": [
+                0,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ]
+        }
+      ],
+      "collect_ability": {
+        "essences": [
+          0,
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "placement_cost": [
+        4,
+        2,
+        0,
+        0,
+        1
+      ],
+      "points_per_essence": [
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "name": "TestJeweledStatuettePower1FailsWhenTurned",
+  "description": "Destroy power (Power 1) fails if artifact is already turned.\n\nPer rules: \"Use Power: On straightened component, pay cost, get effect.\"\nOnly React powers with usable_when_turned=True can be used when turned.\nPower 1 is an ACTION power, not REACT, so it requires straightened state.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Jeweled Statuette"], []],
+    "starting_essences": [{"death": 2, "gold": 1}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Jeweled Statuette",
+      "pay": {"death": 2, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Jeweled Statuette",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {"death": 3}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Jeweled Statuette",
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Jeweled Statuette",
+        "power_index": 1,
+        "player_id": 0,
+        "gain": {"elan": 1, "gold": 2}
+      }
+    }
+  ]
+}

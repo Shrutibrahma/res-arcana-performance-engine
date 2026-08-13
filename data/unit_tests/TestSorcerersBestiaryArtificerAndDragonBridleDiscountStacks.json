@@ -1,0 +1,73 @@
+{
+  "name": "TestSorcerersBestiaryArtificerAndDragonBridleDiscountStacks",
+  "description": "Sorcerer's Bestiary Power 1 + Artificer + Dragon Bridle: All discounts stack.\n\n- Artificer provides -1 artifact placement cost\n- Dragon Bridle provides -3 dragon placement cost\n\nWhen using Sorcerer's Bestiary power 1 to place a dragon from discard,\nall discounts should apply.\n\nFire Dragon normally costs 6 Elan. With Artificer (-1) + Dragon Bridle (-3),\nit should cost only 2 Elan.\n\nSteps:\n1. Place Dragon Bridle: 1E+1L+1C+1D - 1 (Artificer) = 3 total (pay 1L+1C+1D)\n2. Claim Bestiary: 4L + 2E + 2C + 2D = 10\n3. Discard Fire Dragon: gain 2E\n4. Use Bestiary power 1: pay 4E\n5. Place Fire Dragon: 6E - 1 (Artificer) - 3 (Dragon Bridle) = 2E",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sorcerer's Bestiary"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Dragon Bridle", "Fire Dragon"]],
+    "starting_essences": [{"elan": 6, "life": 5, "calm": 3, "death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Bridle",
+      "pay": {"life": 1, "calm": 1, "death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dragon Bridle",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sorcerer's Bestiary",
+      "pay": {"elan": 2, "life": 4, "calm": 2, "death": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Fire Dragon",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Fire Dragon",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Sorcerer's Bestiary",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"elan": 4}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Sorcerer's Bestiary",
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Fire Dragon",
+      "pay": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Fire Dragon",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertOwner", "card_name": "Fire Dragon", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0}
+  ]
+}

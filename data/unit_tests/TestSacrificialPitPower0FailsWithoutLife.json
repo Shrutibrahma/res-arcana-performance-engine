@@ -1,0 +1,36 @@
+{
+  "name": "TestSacrificialPitPower0FailsWithoutLife",
+  "description": "Sacrificial Pit Power 0 fails without 3 Life.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sacrificial Pit"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"elan": 8, "life": 2, "death": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sacrificial Pit",
+      "pay": {"elan": 8, "death": 4},
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Sacrificial Pit",
+        "power_index": 0,
+        "player_id": 0,
+        "pay": {"life": 3},
+        "gain": {"death": 1}
+      }
+    }
+  ]
+}

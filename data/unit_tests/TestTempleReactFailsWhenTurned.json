@@ -1,0 +1,84 @@
+{
+  "name": "TestTempleReactFailsWhenTurned",
+  "description": "Temple react power fails if already turned.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Temple", "Solomon's Mine"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Guard Dog", "Dragon Egg"], ["Fire Dragon", "Bone Dragon"]],
+    "starting_essences": [{"elan": 1, "life": 4, "gold": 9}, {"elan": 6, "life": 1, "death": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Temple", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Fire Dragon",
+      "pay": {"elan": 6},
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Guard Dog",
+      "pay": {"elan": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Fire Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Temple",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Temple", "player_id": 0},
+    {
+      "__type__": "ClaimMonument",
+      "monument_name": "Solomon's Mine",
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Bone Dragon",
+      "pay": {"life": 1, "death": 4},
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Egg",
+      "pay": {"gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Bone Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "LifeLossReact",
+        "card_name": "Temple",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

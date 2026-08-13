@@ -1,0 +1,55 @@
+{
+  "name": "TestWitchPowerStraightensMonument",
+  "description": "Power 0: Can straighten a turned monument.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Library"],
+    "monument_deck": [],
+    "mage_options": [["Witch"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism"]],
+    "starting_essences": [{"elan": 2, "gold": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Witch", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Witch",
+      "gain": {"life": 1},
+      "player_id": 0
+    },
+    {"__type__": "ClaimMonument", "monument_name": "Library", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Library",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Prism"],
+      "known_cards": []
+    },
+    {"__type__": "AssertTurned", "card_name": "Library", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Witch",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Library",
+      "pay": {"elan": 2}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Library",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Witch", "player_id": 0}
+  ]
+}

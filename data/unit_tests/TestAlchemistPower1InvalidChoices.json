@@ -1,0 +1,58 @@
+{
+  "name": "TestAlchemistPower1InvalidChoices",
+  "description": "Power 1: Cannot gain gold, pearl, zero, or multiple essences.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Alchemist",
+        "power_index": 1,
+        "player_id": 0,
+        "gain": {"gold": 1}
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Alchemist",
+        "power_index": 1,
+        "player_id": 0,
+        "gain": {"pearl": 1}
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Alchemist",
+        "power_index": 1,
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Alchemist",
+        "power_index": 1,
+        "player_id": 0,
+        "gain": {"elan": 2}
+      }
+    }
+  ]
+}

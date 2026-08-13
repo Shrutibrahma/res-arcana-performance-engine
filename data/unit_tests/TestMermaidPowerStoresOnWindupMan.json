@@ -1,0 +1,48 @@
+{
+  "name": "TestMermaidPowerStoresOnWindupMan",
+  "description": "Mermaid Power: Turn + spend Calm to store on Windup Man (MultiType storer).\n\nWindup Man benefits from any stored essence type (PerStoredEssence\nconditional collect), so it accepts all types as an on-target store target.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Mermaid", "Windup Man"]],
+    "starting_essences": [{"elan": 1, "life": 3, "calm": 4, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Mermaid",
+      "pay": {"life": 2, "calm": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Windup Man",
+      "pay": {"elan": 1, "life": 1, "calm": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Mermaid",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Windup Man",
+      "pay": {"calm": 1}
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Windup Man",
+      "calm": 1,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Mermaid", "player_id": 0}
+  ]
+}

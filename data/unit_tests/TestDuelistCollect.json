@@ -1,0 +1,27 @@
+{
+  "name": "TestDuelistCollect",
+  "description": "Duelist collects 1 Elan during collect phase.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Duelist"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Duelist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "AssertPool",
+      "player_id": 0,
+      "elan": 2,
+      "life": 1,
+      "calm": 1,
+      "death": 1,
+      "gold": 1
+    }
+  ]
+}

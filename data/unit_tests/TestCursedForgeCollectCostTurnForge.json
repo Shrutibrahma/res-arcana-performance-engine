@@ -1,0 +1,34 @@
+{
+  "name": "TestCursedForgeCollectCostTurnForge",
+  "description": "Cursed Forge collect downside: Can turn the Forge instead of paying Death.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Cursed Forge"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"elan": 6, "death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Cursed Forge",
+      "pay": {"elan": 6, "death": 3},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "CollectCost",
+      "card_name": "Cursed Forge",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Cursed Forge", "player_id": 0}
+  ]
+}

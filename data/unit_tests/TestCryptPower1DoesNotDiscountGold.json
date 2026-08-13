@@ -1,0 +1,59 @@
+{
+  "name": "TestCryptPower1DoesNotDiscountGold",
+  "description": "Crypt Power 1: Discount doesn't reduce Gold cost.\n\nRing of Midas costs L+G (Life + Gold = 2).\nWith -2 discount, Life is discounted but Gold remains.\n\nTwo-stage placement:\n- Stage 1: Use power (pay 1D activation cost)\n- Stage 2: Place Ring of Midas (pay 1G placement cost)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Crypt", "Ring of Midas"]],
+    "starting_essences": [{"elan": 3, "death": 3, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Crypt",
+      "pay": {"elan": 3, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1, "gold": 1},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Ring of Midas",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Ring of Midas",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Crypt",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"death": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Crypt", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "gold": 1},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Ring of Midas",
+      "pay": {"gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Ring of Midas",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2}
+  ]
+}

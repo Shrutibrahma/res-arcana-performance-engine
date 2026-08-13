@@ -1,0 +1,65 @@
+{
+  "name": "TestArtificerDiscountStacksWithCrypt",
+  "description": "Artificer -1 and Crypt -2 discounts stack for -3 total.\n\nElvish Bow costs 2E + 1L = 3 non-Gold essence.\nArtificer gives -1 discount on artifact placement.\nCrypt power 1 gives -2 discount when placing from discard.\nCombined discount: -3, so Elvish Bow is free.\n\nTwo-stage placement:\n- Stage 1: Use Crypt power (pay 1D activation cost)\n- Stage 2: Place Elvish Bow from discard (free after -3 discount)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Crypt", "Elvish Bow"]],
+    "starting_essences": [{"death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Elvish Bow",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Elvish Bow",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "death": 3},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Crypt",
+      "pay": {"elan": 2, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Crypt",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Crypt",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"death": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Crypt", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Elvish Bow",
+      "pay": {},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Elvish Bow",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0}
+  ]
+}

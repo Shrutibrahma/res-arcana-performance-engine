@@ -1,0 +1,49 @@
+{
+  "name": "TestSunkenReefStoreCalm",
+  "description": "Sunken Reef Power: Spend CCL to store 1 Calm - no turn required.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sunken Reef"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"elan": 2, "life": 3, "calm": 7}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sunken Reef",
+      "pay": {"elan": 2, "life": 2, "calm": 5},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "life": 1, "calm": 2},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 1},
+    {
+      "__type__": "UsePower",
+      "card_name": "Sunken Reef",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"life": 1, "calm": 2},
+      "gain": {"calm": 1}
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Sunken Reef",
+      "calm": 1,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Sunken Reef",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 2}
+  ]
+}

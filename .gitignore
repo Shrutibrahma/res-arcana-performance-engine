@@ -1,0 +1,46 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+.coverage
+.claude/
+res_arcana_perf_*.zip
+.DS_Store
+# Generated portfolio publishing ignores
+# Dependencies and environments
+node_modules/
+.venv/
+venv/
+env/
+.conda/
+site-packages/
+
+# Build outputs and caches
+dist/
+build/
+target/
+.next/
+out/
+.cache/
+.pytest_cache/
+__pycache__/
+*.pyc
+.gradle/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local secrets/credentials
+.env
+.env.*
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*secret*
+*credential*

@@ -1,0 +1,18 @@
+{
+  "name": "TestDestroyedStolenCardGoesToCurrentOwnerDiscard",
+  "description": "TODO: A card stolen via Bestiary, then destroyed via Sac Pit, should go to\nthe current owner's (P0) discard — not the original owner's (P1).\n\nSkipped: test setup needs debugging (Bestiary Place power not being offered).",
+  "skip_rust": true,
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sorcerer's Bestiary", "Sacrificial Pit"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [[], ["Sea Serpent", "Hawk"]],
+    "starting_essences": [{"elan": 22, "life": 10, "calm": 8, "death": 6}, {}]
+  },
+  "steps": []
+}

@@ -1,0 +1,84 @@
+{
+  "name": "TestSeerPower",
+  "description": "Power 0: Turn to scry - basic flow with empty deck and failure when turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Colossus"],
+    "monument_deck": [],
+    "mage_options": [["Seer"], ["Alchemist"]],
+    "artifact_decks": [["Prism", "Hawk", "Athanor"], []],
+    "starting_essences": [{}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Seer", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimTopMonument", "player_id": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimMonument", "monument_name": "Colossus", "player_id": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "PlaceArtifact",
+        "artifact_name": "Prism",
+        "pay": {},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "Pass", "item_name": "Research", "player_id": 0}
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimTopMonument", "player_id": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimMonument", "monument_name": "Colossus", "player_id": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "PlaceArtifact",
+        "artifact_name": "Prism",
+        "pay": {},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "Pass", "item_name": "Research", "player_id": 0}
+    },
+    {"__type__": "ScryChoice", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Seer",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

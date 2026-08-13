@@ -1,0 +1,54 @@
+{
+  "name": "TestFireDragonMustPayAllWhenCannotFullyCover",
+  "description": "Must pay ALL essences when cannot fully cover damage.\n\nDamage: 2 (from Fire Dragon)\nPlayer has: 1 Life, 1 Gold = 2 essences (1 Life + 1 non-Life)\nCannot fully cover: max = 1 Life (1 dmg) + 0 non-Life (0 dmg - need 2 per 1 dmg) = 1 dmg, need 2\nValid: pay ALL (1 Life + 1 Gold = 2 essences)\nInvalid: partial payment (1 Life only = 1 essence)\n\nThis test verifies expand_action doesn't generate partial payments\nwhen the player cannot fully cover the damage.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Fire Dragon"], ["Hawk"]],
+    "starting_essences": [{"elan": 6}, {"life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Fire Dragon",
+      "pay": {"elan": 6},
+      "player_id": 0
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Hawk",
+      "gain": {"gold": 1},
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Fire Dragon",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "LifeLossChoice", "player_id": 1, "pay": {"life": 1}}
+    },
+    {
+      "__type__": "LifeLossChoice",
+      "player_id": 1,
+      "pay": {"life": 1, "gold": 1}
+    },
+    {"__type__": "AssertPool", "player_id": 1}
+  ]
+}

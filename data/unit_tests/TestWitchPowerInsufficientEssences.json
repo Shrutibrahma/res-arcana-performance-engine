@@ -1,0 +1,55 @@
+{
+  "name": "TestWitchPowerInsufficientEssences",
+  "description": "Power 0: Fails with insufficient essences.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Witch"]],
+    "artifact_decks": [["Elvish Bow"]],
+    "starting_essences": [{"elan": 2, "life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Witch", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Witch",
+      "gain": {"death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Elvish Bow",
+      "pay": {"elan": 2, "life": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Elvish Bow",
+      "power_index": 1,
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Witch",
+        "power_index": 0,
+        "player_id": 0,
+        "target_name": "Elvish Bow",
+        "pay": {"death": 2}
+      }
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Witch",
+      "turned": false,
+      "player_id": 0
+    }
+  ]
+}

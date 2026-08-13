@@ -1,0 +1,38 @@
+{
+  "name": "TestArtificerDiscountAllocationInvalid",
+  "description": "Invalid discount allocation payments fail.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Dragon Teeth"]],
+    "starting_essences": [{"elan": 2, "calm": 2, "death": 2}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "PlaceArtifact",
+        "artifact_name": "Dragon Teeth",
+        "pay": {"elan": 1, "death": 1},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "PlaceArtifact",
+        "artifact_name": "Dragon Teeth",
+        "pay": {"calm": 1},
+        "player_id": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "name": "TestChaliceOfFireStraightensPlaceOfPower",
+  "description": "Chalice of Fire can straighten a Place of Power like Catacombs of the Dead.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Catacombs of the Dead"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Chalice of Fire"]],
+    "starting_essences": [{"elan": 2, "death": 9, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Chalice of Fire",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Catacombs of the Dead",
+      "pay": {"death": 9},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 1},
+    {
+      "__type__": "UsePower",
+      "card_name": "Catacombs of the Dead",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {"death": 1}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Catacombs of the Dead",
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Chalice of Fire",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Catacombs of the Dead",
+      "pay": {"elan": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Chalice of Fire", "player_id": 0},
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Catacombs of the Dead",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0}
+  ]
+}

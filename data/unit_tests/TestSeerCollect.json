@@ -1,0 +1,27 @@
+{
+  "name": "TestSeerCollect",
+  "description": "Collect: 1 Calm during collect phase.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Seer"], ["Alchemist"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "AssertPool",
+      "player_id": 0,
+      "elan": 1,
+      "life": 1,
+      "calm": 2,
+      "death": 1,
+      "gold": 1
+    }
+  ]
+}

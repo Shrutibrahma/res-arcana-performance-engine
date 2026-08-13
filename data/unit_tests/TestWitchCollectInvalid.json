@@ -1,0 +1,45 @@
+{
+  "name": "TestWitchCollectInvalid",
+  "description": "Collect: Invalid choices fail.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Witch"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Witch", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "Gain",
+        "card_name": "Witch",
+        "gain": {"elan": 1},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "Gain",
+        "card_name": "Witch",
+        "gain": {"gold": 1},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "Gain",
+        "card_name": "Witch",
+        "gain": {"life": 1, "death": 1},
+        "player_id": 0
+      }
+    }
+  ]
+}

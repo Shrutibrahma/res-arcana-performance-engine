@@ -1,0 +1,73 @@
+{
+  "name": "TestSeerScryMonumentDeck",
+  "description": "Power 0: Scry monument deck and reorder - verify by claiming.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": ["Great Pyramid", "Temple", "Library"],
+    "mage_options": [["Seer"], ["Alchemist"]],
+    "starting_essences": [{"gold": 12}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 1}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Great Pyramid", "Temple", "Library"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [2, 0, 1]},
+    {"__type__": "AssertTurned", "card_name": "Seer", "player_id": 0},
+    {"__type__": "ClaimTopMonument", "player_id": 0},
+    {
+      "__type__": "ResolveMonumentDraw",
+      "monument_name": "Library",
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Library",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "calm": 1, "gold": 8},
+    {"__type__": "ClaimTopMonument", "player_id": 0},
+    {
+      "__type__": "ResolveMonumentDraw",
+      "monument_name": "Great Pyramid",
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Great Pyramid",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "calm": 1, "gold": 4},
+    {"__type__": "ClaimTopMonument", "player_id": 0},
+    {
+      "__type__": "ResolveMonumentDraw",
+      "monument_name": "Temple",
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Temple",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "calm": 1}
+  ]
+}

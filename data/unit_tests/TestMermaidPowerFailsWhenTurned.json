@@ -1,0 +1,52 @@
+{
+  "name": "TestMermaidPowerFailsWhenTurned",
+  "description": "Mermaid Power fails if already turned.\n\nFirst use stores Calm on Windup Man (which benefits from any stored essence),\nturning Mermaid. Second use fails because Mermaid is turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Mermaid", "Windup Man"]],
+    "starting_essences": [{"elan": 1, "life": 3, "calm": 5, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Mermaid",
+      "pay": {"life": 2, "calm": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Windup Man",
+      "pay": {"elan": 1, "life": 1, "calm": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Mermaid",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Windup Man",
+      "pay": {"calm": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Mermaid", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Mermaid",
+        "power_index": 0,
+        "player_id": 0,
+        "target_name": "Windup Man",
+        "pay": {"calm": 1}
+      }
+    }
+  ]
+}

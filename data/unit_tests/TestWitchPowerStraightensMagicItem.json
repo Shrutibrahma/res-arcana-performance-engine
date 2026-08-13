@@ -1,0 +1,55 @@
+{
+  "name": "TestWitchPowerStraightensMagicItem",
+  "description": "Power 0: Can straighten a turned magic item.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Witch"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism"]],
+    "starting_essences": [{"death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Witch", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Witch",
+      "gain": {"life": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Research",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"death": 1}
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Prism"],
+      "known_cards": []
+    },
+    {"__type__": "AssertTurned", "card_name": "Research", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Witch",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Research",
+      "pay": {"death": 2}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Research",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Witch", "player_id": 0}
+  ]
+}

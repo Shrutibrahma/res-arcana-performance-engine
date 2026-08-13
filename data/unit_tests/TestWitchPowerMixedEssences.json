@@ -1,0 +1,55 @@
+{
+  "name": "TestWitchPowerMixedEssences",
+  "description": "Power 0: Can use any combination of 2 essences including gold.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Witch"]],
+    "artifact_decks": [["Dwarven Pickaxe"]],
+    "starting_essences": [{"elan": 2, "life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Witch", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Witch",
+      "gain": {"death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dwarven Pickaxe",
+      "pay": {"elan": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Dwarven Pickaxe",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1},
+      "gain": {"gold": 1}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Witch",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Dwarven Pickaxe",
+      "pay": {"life": 1, "gold": 1}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Dwarven Pickaxe",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1}
+  ]
+}

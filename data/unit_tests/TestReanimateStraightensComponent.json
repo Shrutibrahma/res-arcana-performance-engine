@@ -1,0 +1,49 @@
+{
+  "name": "TestReanimateStraightensComponent",
+  "description": "Reanimate Power 0: Turn + 1 any to straighten a component.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Vault"]],
+    "starting_essences": [{"elan": 2, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Reanimate", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Vault",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Vault",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {"gold": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Vault", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Reanimate",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Vault",
+      "pay": {"elan": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Reanimate", "player_id": 0},
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Vault",
+      "turned": false,
+      "player_id": 0
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "TestObeliskGainBeforeMonumentReveal",
+  "description": "Obelisk essences are chosen before the replacement monument is revealed.\n\nPer ruling: pay 4G -> claim Obelisk -> choose essences -> reveal replacement.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Obelisk"],
+    "monument_deck": ["Colossus"],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"gold": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Obelisk", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Obelisk",
+      "gain": {"elan": 2, "life": 2, "calm": 1, "death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveMonumentReveal",
+      "monument_name": "Colossus",
+      "player_id": 0
+    }
+  ]
+}

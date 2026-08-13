@@ -1,0 +1,28 @@
+{
+  "name": "TestDruidCannotTargetItself",
+  "description": "Power: Cannot target itself (Mage is not a Creature).\n\nThis is a regression test for a bug where the special case in\nget_targets_from_filter (for powers that require_turn targeting\nrequire_tapped entities) incorrectly added the source entity as a\nvalid target without checking the card_type_mask.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Druid"], ["Alchemist"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Druid", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Druid",
+        "power_index": 0,
+        "player_id": 0,
+        "target_name": "Druid"
+      }
+    }
+  ]
+}

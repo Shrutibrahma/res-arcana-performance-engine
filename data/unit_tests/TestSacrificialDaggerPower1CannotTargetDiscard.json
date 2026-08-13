@@ -1,0 +1,48 @@
+{
+  "name": "TestSacrificialDaggerPower1CannotTargetDiscard",
+  "description": "Sacrificial Dagger Power 1 cannot target a card already in discard.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Sacrificial Dagger", "Hawk"]],
+    "starting_essences": [{"death": 1, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Sacrificial Dagger",
+      "pay": {"death": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Hawk",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Sacrificial Dagger",
+        "power_index": 1,
+        "player_id": 0,
+        "target_name": "Hawk",
+        "gain": {"calm": 2}
+      }
+    }
+  ]
+}

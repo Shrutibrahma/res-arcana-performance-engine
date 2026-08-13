@@ -1,0 +1,36 @@
+{
+  "name": "TestSacrificialDaggerPower1UsesPrintedCostNotDiscounted",
+  "description": "Sacrificial Dagger Power 1 uses printed cost, not Artificer-discounted cost.\n\nHawk costs 1L + 1C = 2 printed. Artificer gives -1 discount to artifacts.\nWe should still gain 2 essences (printed), not 1 (discounted).",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Sacrificial Dagger", "Hawk"]],
+    "starting_essences": [{"death": 1, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Sacrificial Dagger",
+      "pay": {"gold": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1},
+    {
+      "__type__": "UsePower",
+      "card_name": "Sacrificial Dagger",
+      "power_index": 1,
+      "player_id": 0,
+      "target_name": "Hawk",
+      "gain": {"calm": 2}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "calm": 2, "death": 1}
+  ]
+}

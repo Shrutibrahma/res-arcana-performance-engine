@@ -1,0 +1,25 @@
+{
+  "name": "TestDruidNoCreaturesInPlay",
+  "description": "Power: Succeeds with no creatures (FAQ).",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Druid"], ["Alchemist"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Druid", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Druid",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Druid", "player_id": 0}
+  ]
+}

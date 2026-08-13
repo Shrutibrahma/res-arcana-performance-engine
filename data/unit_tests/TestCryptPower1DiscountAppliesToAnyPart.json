@@ -1,0 +1,60 @@
+{
+  "name": "TestCryptPower1DiscountAppliesToAnyPart",
+  "description": "Crypt Power 1: Discount can apply to the 'any' part of a cost.\n\nWind Dragon costs 4C (fixed) + 4A (any) = 8 total.\nWith -2 discount applied to the 'any' part: 4C + 2A = 6 total.\n\nTwo-stage placement:\n- Stage 1: Use power (pay 1D activation cost)\n- Stage 2: Place Wind Dragon (pay 4C + 2E discounted placement cost)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Crypt", "Wind Dragon"]],
+    "starting_essences": [{"elan": 5, "calm": 4, "death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Crypt",
+      "pay": {"elan": 3, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "calm": 4, "death": 1},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Wind Dragon",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Wind Dragon",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 4, "calm": 4, "death": 1},
+    {
+      "__type__": "UsePower",
+      "card_name": "Crypt",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"death": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Crypt", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0, "elan": 4, "calm": 4},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Wind Dragon",
+      "pay": {"elan": 2, "calm": 4},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Wind Dragon",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2}
+  ]
+}

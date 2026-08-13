@@ -1,0 +1,62 @@
+{
+  "name": "TestChaliceOfLifePower0CanUseMultipleTimes",
+  "description": "Chalice of Life Power 0 can be used multiple times since no turn cost.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Chalice of Life"], []],
+    "starting_essences": [{"life": 1, "calm": 5, "gold": 1}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Chalice of Life",
+      "pay": {"life": 1, "calm": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Chalice of Life",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"calm": 2},
+      "gain": {"life": 1, "calm": 2}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Chalice of Life",
+      "life": 1,
+      "calm": 2,
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Chalice of Life",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"calm": 2},
+      "gain": {"life": 1, "calm": 2}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Chalice of Life",
+      "life": 2,
+      "calm": 4,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Chalice of Life",
+      "turned": false,
+      "player_id": 0
+    }
+  ]
+}

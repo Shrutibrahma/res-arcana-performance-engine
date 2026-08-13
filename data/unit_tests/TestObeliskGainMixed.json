@@ -1,0 +1,56 @@
+{
+  "name": "TestObeliskGainMixed",
+  "description": "When bought, can gain mixed essences.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Obelisk", "Colossus"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Prism"], []],
+    "starting_essences": [{"gold": 4}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Obelisk", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimMonument", "monument_name": "Colossus", "player_id": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "PlaceArtifact",
+        "artifact_name": "Prism",
+        "pay": {},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimMonument", "monument_name": "Colossus", "player_id": 0}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ClaimTopMonument", "player_id": 0}
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Obelisk",
+      "gain": {"elan": 2, "life": 2, "calm": 1, "death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertPool",
+      "player_id": 0,
+      "elan": 2,
+      "life": 2,
+      "calm": 1,
+      "death": 1
+    }
+  ]
+}

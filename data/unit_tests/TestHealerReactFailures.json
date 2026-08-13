@@ -1,0 +1,43 @@
+{
+  "name": "TestHealerReactFailures",
+  "description": "React power: Cannot use as main action or without pending damage.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Healer"], ["Alchemist"]],
+    "starting_essences": [{"life": 2}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Healer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "Gain",
+      "card_name": "Healer",
+      "gain": {"life": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Healer",
+        "power_index": 0,
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "LifeLossReact",
+        "card_name": "Healer",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

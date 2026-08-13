@@ -1,0 +1,34 @@
+{
+  "name": "TestSorcerersBestiarySeaSerpentBothTypes",
+  "description": "Sea Serpent counts as both Dragon (2 VP) and Creature (1 VP) = 3 VP from Bestiary.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sorcerer's Bestiary"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Sea Serpent"], []],
+    "starting_essences": [{"elan": 2, "life": 7, "calm": 8, "death": 2}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sorcerer's Bestiary",
+      "pay": {"elan": 2, "life": 4, "calm": 2, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 1},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Sea Serpent",
+      "pay": {"life": 3, "calm": 6},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 5}
+  ]
+}

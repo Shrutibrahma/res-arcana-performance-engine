@@ -1,0 +1,60 @@
+{
+  "name": "TestDuelistAccumulateGold",
+  "description": "Power can accumulate gold over multiple rounds.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Duelist"]],
+    "starting_essences": [{"death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Duelist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Duelist",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"death": 1},
+      "gain": {"gold": 1}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Duelist",
+      "gold": 1,
+      "player_id": 0
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "TakeStored",
+      "card_name": "Duelist",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 4}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Duelist",
+      "turned": false,
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Duelist",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"death": 1},
+      "gain": {"gold": 1}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Duelist",
+      "gold": 2,
+      "player_id": 0
+    }
+  ]
+}

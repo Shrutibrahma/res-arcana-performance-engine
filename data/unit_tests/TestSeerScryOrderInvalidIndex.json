@@ -1,0 +1,40 @@
+{
+  "name": "TestSeerScryOrderInvalidIndex",
+  "description": "Scry fails with out-of-range index.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Seer"], ["Alchemist"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism", "Hawk", "Vault"], []],
+    "starting_essences": [{}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Prism", "Hawk", "Vault"],
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ScryChoice", "player_id": 0, "scry_order": [3, 0, 1]}
+    }
+  ]
+}

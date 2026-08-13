@@ -1,0 +1,60 @@
+{
+  "name": "TestCryptPower1DiscountCannotGoBelowZero",
+  "description": "Crypt Power 1: Discount cannot reduce cost below 0 (no refund).\n\nDwarven Pickaxe costs 1E. With -2 discount, it costs 0E, not -1E.\nPlayer should NOT gain any essences - just pay 1D for power and place for free.\n\nTwo-stage placement:\n- Stage 1: Use power (pay 1D activation cost)\n- Stage 2: Place Dwarven Pickaxe (free after discount)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Crypt", "Dwarven Pickaxe"]],
+    "starting_essences": [{"elan": 3, "death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Crypt",
+      "pay": {"elan": 3, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 1},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Dwarven Pickaxe",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dwarven Pickaxe",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "death": 1},
+    {
+      "__type__": "UsePower",
+      "card_name": "Crypt",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"death": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Crypt", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dwarven Pickaxe",
+      "pay": {},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dwarven Pickaxe",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2}
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "name": "TestCryptPower1WithArtificerDiscountToFixedCost",
+  "description": "Crypt Power 1 + Artificer: Combined discount allows alternative payment options.\n\nThis tests the scenario where discount can be applied to FIXED costs:\n- Artificer provides +1 artifact discount\n- Crypt provides +2 from its power\n- Total discount = 3 (1 Artificer + 2 Crypt)\n- Corrupt Altar costs 2 Death (fixed) + 3 any = 5 total\n- With 3 discount applied to fixed (2) + any (1): 0 Death + 2 any remaining\n- Player can pay 2 Calm instead of 2 Death\n\nCRITICAL: The player HAS enough death to pay 2D, but CHOOSES to pay 2C.\nThis tests that the engine offers BOTH payment options:\n1. Apply discount to \"any\" \u2192 pay 2D + 0A (fixed)\n2. Apply discount to fixed + any \u2192 pay 0D + 2A (flexible)\n\nBGA replay: https://boardgamearena.com/table?table=432930782\n\nTwo-stage placement:\n- Stage 1: Use Crypt power (pay 1D activation cost)\n- Stage 2: Place Corrupt Altar (pay 2 Calm - discount applied to fixed Death)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Crypt", "Corrupt Altar", "Prism"]],
+    "starting_essences": [{"elan": 2, "calm": 2, "death": 5}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Crypt",
+      "pay": {"elan": 2, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "calm": 2, "death": 3},
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Corrupt Altar",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Corrupt Altar",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "calm": 2, "death": 3},
+    {
+      "__type__": "UsePower",
+      "card_name": "Crypt",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"death": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Crypt", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "calm": 2, "death": 2},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Corrupt Altar",
+      "pay": {"calm": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Corrupt Altar",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "death": 2}
+  ]
+}

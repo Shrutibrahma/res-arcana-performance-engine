@@ -1,0 +1,78 @@
+{
+  "name": "TestAthanorPower1FailsWithout6Elan",
+  "description": "Athanor Power 1 fails without 6 Elan stored on card.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Athanor"]],
+    "starting_essences": [{"elan": 3, "death": 2, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Athanor",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Athanor",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1},
+      "gain": {"elan": 2}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Athanor",
+      "elan": 2,
+      "player_id": 0
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "TakeStored",
+      "card_name": "Athanor",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 4}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Athanor",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1},
+      "gain": {"elan": 2}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Athanor",
+      "elan": 4,
+      "player_id": 0
+    },
+    {"__type__": "Pass", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "TakeStored",
+      "card_name": "Athanor",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 4}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Athanor",
+        "power_index": 1,
+        "player_id": 0,
+        "pay": {"death": 2}
+      }
+    }
+  ]
+}

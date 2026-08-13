@@ -1,0 +1,72 @@
+{
+  "name": "TestSeerScryKeepOrder",
+  "description": "Power 0: Scry and keep same order - verify by drawing.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Seer"], ["Alchemist"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism", "Hawk", "Vault"], []],
+    "starting_essences": [{"elan": 1}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Prism", "Hawk", "Vault"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [0, 1, 2]},
+    {
+      "__type__": "UsePower",
+      "card_name": "Research",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1}
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": [],
+      "known_cards": ["Prism"]
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": [],
+      "known_cards": ["Hawk"]
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Vault",
+      "location": {"__enum__": "CardLocation", "value": 3}
+    }
+  ]
+}

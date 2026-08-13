@@ -1,0 +1,52 @@
+{
+  "name": "TestNecromancerStoredDeathPersists",
+  "description": "Stored Death on Necromancer persists across round boundaries.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Necromancer"]],
+    "starting_essences": [{"life": 2}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Necromancer", "player_id": 0},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Necromancer",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"life": 2},
+      "gain": {"death": 3}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Necromancer",
+      "death": 3,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Necromancer", "player_id": 0},
+    {"__type__": "Pass", "item_name": "Research", "player_id": 0},
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Necromancer",
+      "death": 3,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Necromancer",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 2}
+  ]
+}

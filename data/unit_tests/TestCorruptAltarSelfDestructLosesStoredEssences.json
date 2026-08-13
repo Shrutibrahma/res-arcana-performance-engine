@@ -1,0 +1,56 @@
+{
+  "name": "TestCorruptAltarSelfDestructLosesStoredEssences",
+  "description": "Corrupt Altar: Destroying itself does NOT return stored essences to pool.\n\nWhen Corrupt Altar destroys itself with Power 1, you gain cost+2 = 7 any,\nbut any essences stored on the card are LOST (not added to pool).",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Corrupt Altar"]],
+    "starting_essences": [{"elan": 3, "life": 2, "death": 2}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Corrupt Altar",
+      "pay": {"elan": 3, "death": 2},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "life": 2},
+    {
+      "__type__": "UsePower",
+      "card_name": "Corrupt Altar",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"life": 2},
+      "gain": {"elan": 3}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Corrupt Altar",
+      "elan": 3,
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Corrupt Altar",
+      "power_index": 1,
+      "player_id": 0,
+      "target_name": "Corrupt Altar",
+      "gain": {"death": 7}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Corrupt Altar",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 7}
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "TestSeerScryReshufflesDiscard",
+  "description": "Power 0: When deck has fewer than 3 cards, reshuffle discard first.\n\nBUG: Currently the engine does NOT reshuffle before scrying.\nThis test documents the expected behavior - scry 3 should see 3 cards\nafter reshuffling the discard pile into the deck.\n\nSetup: 5 cards total (3 hand, 2 deck). Discard one from hand.\nResult: 2 in deck, 1 in discard.\nExpected: Scry 3 reshuffles discard first, then sees all 3 cards.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Seer"], ["Alchemist"]],
+    "artifact_decks": [["Dwarven Pickaxe", "Athanor", "Dragon Egg", "Prism", "Hawk"], []],
+    "starting_essences": [{}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Seer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 3}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 3}
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Dwarven Pickaxe",
+      "gain": {"elan": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dwarven Pickaxe",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Dwarven Pickaxe", "Prism", "Hawk"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [0, 1, 2]}
+  ]
+}

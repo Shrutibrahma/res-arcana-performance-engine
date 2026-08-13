@@ -1,0 +1,69 @@
+{
+  "name": "TestDivinationFewerThan3Cards",
+  "description": "Divination: With fewer than 3 cards available, draw all and discard that many.\n\nPer ruling: \"If there are fewer than 3 cards in that deck (after reshuffling),\ndraw them all, and then replace/discard that number of cards.\"\nhttps://boardgamegeek.com/thread/2202345/magical-item-divination",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism", "Hawk"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Divination", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Divination",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Prism", "Hawk"],
+      "known_cards": []
+    },
+    {"__type__": "AssertTurned", "card_name": "Divination", "player_id": 0},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "DiscardChoice",
+      "card_names": ["Prism", "Hawk"],
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Athanor",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Hawk"],
+      "known_cards": []
+    }
+  ]
+}

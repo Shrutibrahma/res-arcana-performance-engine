@@ -1,0 +1,43 @@
+{
+  "name": "TestHawkPower0FailsWhenTurned",
+  "description": "Hawk Power 0 fails if already turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Hawk"]],
+    "starting_essences": [{"life": 1, "calm": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hawk",
+      "pay": {"life": 1, "calm": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Hawk",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"calm": 2}
+    },
+    {"__type__": "AssertTurned", "card_name": "Hawk", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Hawk",
+        "power_index": 0,
+        "player_id": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "TestDragonTeethPower1SucceedsWithoutTarget",
+  "description": "Dragon Teeth Power 1: Can activate then decline when no dragon in hand.\n\nTwo-stage placement:\n- Stage 1: Use power (pay 3E activation cost)\n- Stage 2: Decline (no dragon in hand)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Dragon Teeth"]],
+    "starting_essences": [{"elan": 4, "death": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Teeth",
+      "pay": {"elan": 1, "death": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 3},
+    {
+      "__type__": "UsePower",
+      "card_name": "Dragon Teeth",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"elan": 3}
+    },
+    {"__type__": "AssertTurned", "card_name": "Dragon Teeth", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0},
+    {"__type__": "Decline", "card_name": "Dragon Teeth", "player_id": 0}
+  ]
+}

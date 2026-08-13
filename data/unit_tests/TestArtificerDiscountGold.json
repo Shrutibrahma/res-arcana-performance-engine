@@ -1,0 +1,44 @@
+{
+  "name": "TestArtificerDiscountGold",
+  "description": "Discount does NOT apply to Gold costs.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Dragon Egg", "Athanor"]],
+    "starting_essences": [{"elan": 1, "gold": 2}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Egg",
+      "pay": {"gold": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 1, "gold": 1},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dragon Egg",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Athanor",
+      "pay": {"gold": 1},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 1},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Athanor",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    }
+  ]
+}

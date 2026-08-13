@@ -1,0 +1,28 @@
+{
+  "name": "TestScholarPayWithLife",
+  "description": "Power 0: Can pay with Life (1 any cost).",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Scholar"]],
+    "starting_essences": [{"life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Scholar", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Scholar",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"life": 1}
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {"__type__": "AssertTurned", "card_name": "Scholar", "player_id": 0}
+  ]
+}

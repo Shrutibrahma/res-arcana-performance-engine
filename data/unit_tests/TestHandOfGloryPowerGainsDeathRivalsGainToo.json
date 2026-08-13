@@ -1,0 +1,48 @@
+{
+  "name": "TestHandOfGloryPowerGainsDeathRivalsGainToo",
+  "description": "Hand of Glory Power: Turn to gain 2D (rivals gain 1D).",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Hand of Glory"], ["Guard Dog"]],
+    "starting_essences": [{"life": 1, "death": 1}, {"elan": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hand of Glory",
+      "pay": {"life": 1, "death": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Guard Dog",
+      "pay": {"elan": 1},
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Hand of Glory",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {"death": 2}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "death": 2},
+    {"__type__": "AssertPool", "player_id": 1, "death": 1},
+    {"__type__": "AssertTurned", "card_name": "Hand of Glory", "player_id": 0}
+  ]
+}

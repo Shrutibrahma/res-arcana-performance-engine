@@ -1,0 +1,30 @@
+{
+  "name": "TestDuelistPowerNoDeath",
+  "description": "Power 0: Fails without Death essence.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Duelist"]],
+    "starting_essences": [{}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Duelist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Duelist",
+        "power_index": 0,
+        "player_id": 0,
+        "pay": {"death": 1},
+        "gain": {"gold": 1}
+      }
+    }
+  ]
+}

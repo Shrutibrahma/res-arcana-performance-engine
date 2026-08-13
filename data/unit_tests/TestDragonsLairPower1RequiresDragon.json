@@ -1,0 +1,35 @@
+{
+  "name": "TestDragonsLairPower1RequiresDragon",
+  "description": "Dragon's Lair Power 1 fails without a dragon in play.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Dragon's Lair"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"elan": 3, "life": 3, "calm": 3, "death": 3}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Dragon's Lair",
+      "pay": {"elan": 3, "life": 3, "calm": 3, "death": 3},
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Dragon's Lair",
+        "power_index": 1,
+        "player_id": 0,
+        "gain": {"gold": 2}
+      }
+    }
+  ]
+}

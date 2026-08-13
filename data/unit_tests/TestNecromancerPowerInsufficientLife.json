@@ -1,0 +1,36 @@
+{
+  "name": "TestNecromancerPowerInsufficientLife",
+  "description": "Power 0: Fails with insufficient Life.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Necromancer"]],
+    "starting_essences": [{"life": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Necromancer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Necromancer",
+        "power_index": 0,
+        "player_id": 0,
+        "pay": {"life": 2},
+        "gain": {"death": 3}
+      }
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Necromancer",
+      "turned": false,
+      "player_id": 0
+    }
+  ]
+}

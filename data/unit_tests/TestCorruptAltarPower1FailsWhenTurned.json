@@ -1,0 +1,58 @@
+{
+  "name": "TestCorruptAltarPower1FailsWhenTurned",
+  "description": "Corrupt Altar Power 1 fails if already turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Corrupt Altar", "Hawk", "Guard Dog"]],
+    "starting_essences": [{"elan": 4, "life": 1, "calm": 1, "death": 2}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Corrupt Altar",
+      "pay": {"elan": 3, "death": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hawk",
+      "pay": {"life": 1, "calm": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Guard Dog",
+      "pay": {"elan": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Corrupt Altar",
+      "power_index": 1,
+      "player_id": 0,
+      "target_name": "Hawk",
+      "gain": {"calm": 4}
+    },
+    {"__type__": "AssertTurned", "card_name": "Corrupt Altar", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Corrupt Altar",
+        "power_index": 1,
+        "player_id": 0,
+        "target_name": "Guard Dog",
+        "gain": {"calm": 3}
+      }
+    }
+  ]
+}

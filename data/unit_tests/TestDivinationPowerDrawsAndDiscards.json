@@ -1,0 +1,67 @@
+{
+  "name": "TestDivinationPowerDrawsAndDiscards",
+  "description": "Divination Power 0: Draw 3, discard 3.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Athanor", "Cursed Skull", "Dragon Egg", "Prism", "Hawk", "Vault"]]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Divination", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Divination",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "player_id": 0,
+      "revealed_cards": ["Prism", "Hawk", "Vault"],
+      "known_cards": []
+    },
+    {"__type__": "AssertTurned", "card_name": "Divination", "player_id": 0},
+    {
+      "__type__": "DiscardChoice",
+      "card_names": ["Prism", "Hawk", "Vault"],
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Prism",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Hawk",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Vault",
+      "location": {"__enum__": "CardLocation", "value": 6}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Athanor",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Cursed Skull",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dragon Egg",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    }
+  ]
+}

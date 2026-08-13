@@ -1,0 +1,42 @@
+{
+  "name": "TestOracleScryChoiceFailsBeforeDeckChoice",
+  "description": "Scry choice fails before selecting which deck.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Oracle"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Prism", "Hawk", "Vault", "Cursed Skull", "Fiery Whip", "Hand of Glory"]],
+    "starting_essences": [{"gold": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Oracle", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Oracle",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {"__type__": "ScryChoice", "player_id": 0, "scry_order": [0, 1, 2]}
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": ["Cursed Skull", "Fiery Whip", "Hand of Glory"],
+      "player_id": 0
+    },
+    {"__type__": "ScryChoice", "player_id": 0, "scry_order": [0, 1, 2]}
+  ]
+}

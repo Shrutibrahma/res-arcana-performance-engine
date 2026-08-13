@@ -1,0 +1,50 @@
+{
+  "name": "TestEssenceTiebreakerWhenVPTied",
+  "description": "When VP is tied, most essences wins.\n\nP0: 1 token + 10 stored Gold on AT = 11 VP, 2G left (tb=4)\nP1: 11 stored Calm on SR = 11 VP, 5G left (tb=10)\nVP tied at 11 -> P1 wins on essences",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Alchemist's Tower", "Sunken Reef"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "starting_essences": [
+      {"elan": 10, "life": 10, "calm": 10, "death": 10, "gold": 5},
+      {"elan": 2, "life": 13, "calm": 27, "gold": 5}
+    ]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Transmutation", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimPlaceOfPower", "pop_name": "Alchemist's Tower", "pay": {"gold": 3}, "player_id": 0},
+    {"__type__": "ClaimPlaceOfPower", "pop_name": "Sunken Reef", "pay": {"elan": 2, "life": 2, "calm": 5}, "player_id": 1},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "UsePower", "card_name": "Alchemist's Tower", "power_index": 0, "player_id": 0, "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "gain": {"gold": 1}},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "Pass", "item_name": "Research", "player_id": 0},
+    {"__type__": "UsePower", "card_name": "Sunken Reef", "power_index": 0, "player_id": 1, "pay": {"calm": 2, "life": 1}, "gain": {"calm": 1}},
+    {"__type__": "Pass", "item_name": "Divination", "player_id": 1},
+    {"__type__": "AssertWinners", "winner_ids": [1]}
+  ]
+}

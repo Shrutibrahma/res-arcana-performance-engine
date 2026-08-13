@@ -1,0 +1,70 @@
+{
+  "name": "TestDancingSwordReactDoesNotTurnCard",
+  "description": "Dancing Sword react power does NOT turn the card (has usable_when_turned).",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Dancing Sword", "Guard Dog"], ["Fire Dragon"]],
+    "starting_essences": [{"elan": 3, "gold": 1}, {"elan": 6}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dancing Sword",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Fire Dragon",
+      "pay": {"elan": 6},
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Guard Dog",
+      "pay": {"elan": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Fire Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Dancing Sword",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1},
+      "gain": {"death": 1}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Dancing Sword",
+      "death": 1,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Dancing Sword",
+      "turned": false,
+      "player_id": 0
+    }
+  ]
+}

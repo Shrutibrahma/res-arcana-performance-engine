@@ -1,0 +1,69 @@
+{
+  "name": "TestDruidCannotTargetOpponentCreature",
+  "description": "Power: Cannot target opponent's creatures.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Druid"], ["Transmuter"]],
+    "artifact_decks": [["Dwarven Pickaxe"], ["Hawk"]],
+    "starting_essences": [{"elan": 2}, {"life": 1, "calm": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Druid", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Transmutation",
+      "player_id": 1
+    },
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dwarven Pickaxe",
+      "pay": {"elan": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hawk",
+      "pay": {"life": 1, "calm": 1},
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Dwarven Pickaxe",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 1},
+      "gain": {"gold": 1}
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Hawk",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 1,
+      "scry_target": {"__enum__": "DeckType", "value": 0}
+    },
+    {"__type__": "ScryChoice", "player_id": 1},
+    {"__type__": "AssertTurned", "card_name": "Hawk", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Druid",
+        "power_index": 0,
+        "player_id": 0,
+        "target_name": "Hawk"
+      }
+    }
+  ]
+}

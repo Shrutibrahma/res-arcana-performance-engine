@@ -1,0 +1,39 @@
+{
+  "name": "TestSorcerersBestiaryPower1DeclineToPlace",
+  "description": "Sorcerer's Bestiary Power 1: Can pay activation cost then decline to place.\n\nTwo-stage placement:\n- Stage 1: Use power (pay 4 any activation cost)\n- Stage 2: Decline (no dragon in discard, or choose not to place)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sorcerer's Bestiary"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "starting_essences": [{"elan": 6, "life": 4, "calm": 2, "death": 2}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sorcerer's Bestiary",
+      "pay": {"elan": 2, "life": 4, "calm": 2, "death": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Sorcerer's Bestiary",
+      "power_index": 1,
+      "player_id": 0,
+      "pay": {"elan": 4}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Sorcerer's Bestiary",
+      "player_id": 0
+    },
+    {"__type__": "Decline", "card_name": "Sorcerer's Bestiary", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0}
+  ]
+}

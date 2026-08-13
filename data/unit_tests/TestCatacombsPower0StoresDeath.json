@@ -1,0 +1,48 @@
+{
+  "name": "TestCatacombsPower0StoresDeath",
+  "description": "Catacombs Power 0: Spend 5 Death to store 1 Death - no turn required.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Catacombs of the Dead"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"death": 14}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Catacombs of the Dead",
+      "pay": {"death": 9},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 1},
+    {
+      "__type__": "UsePower",
+      "card_name": "Catacombs of the Dead",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"death": 5},
+      "gain": {"death": 1}
+    },
+    {"__type__": "AssertPool", "player_id": 0},
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Catacombs of the Dead",
+      "death": 1,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Catacombs of the Dead",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 2}
+  ]
+}

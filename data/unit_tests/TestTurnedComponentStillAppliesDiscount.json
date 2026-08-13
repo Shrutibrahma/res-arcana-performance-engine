@@ -1,0 +1,48 @@
+{
+  "name": "TestTurnedComponentStillAppliesDiscount",
+  "description": "Discounts are static — they apply even when the component is turned.\n\nDragon Bridle (-3 off Dragons) is turned by reacting to Bone Dragon attack.\nP0 then places Fire Dragon for 3E (6E - 3 discount).\nIf discount didn't apply when turned, placement would need 6E and fail.",
+  "num_players": 2,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Dragon Bridle", "Fire Dragon"], ["Bone Dragon"]],
+    "starting_essences": [{"elan": 4, "life": 1, "calm": 1, "death": 1}, {"life": 1, "death": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMage", "mage_name": "Transmuter", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Transmutation", "player_id": 1},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact", "artifact_name": "Dragon Bridle",
+      "pay": {"elan": 1, "life": 1, "calm": 1, "death": 1}, "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact", "artifact_name": "Bone Dragon",
+      "pay": {"life": 1, "death": 4}, "player_id": 1
+    },
+    {
+      "__type__": "UsePower", "card_name": "Alchemist",
+      "power_index": 1, "player_id": 0, "gain": {"elan": 1}
+    },
+    {
+      "__type__": "UsePower", "card_name": "Bone Dragon",
+      "power_index": 0, "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact", "card_name": "Dragon Bridle",
+      "power_index": 0, "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Dragon Bridle", "player_id": 0},
+    {"__type__": "AssertPool", "player_id": 0, "elan": 4},
+    {
+      "__type__": "PlaceArtifact", "artifact_name": "Fire Dragon",
+      "pay": {"elan": 3}, "player_id": 0
+    }
+  ]
+}

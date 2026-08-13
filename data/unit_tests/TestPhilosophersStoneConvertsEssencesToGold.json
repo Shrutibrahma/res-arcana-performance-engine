@@ -1,0 +1,40 @@
+{
+  "name": "TestPhilosophersStoneConvertsEssencesToGold",
+  "description": "Philosopher's Stone Power: Turn + 2 any + X identical to gain X Gold.\n\nPay DD (2 any) + CCCC (4 identical) = gain 4 Gold.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Philosopher's Stone"]],
+    "starting_essences": [{"elan": 2, "life": 2, "calm": 6, "death": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Philosopher's Stone",
+      "pay": {"elan": 2, "life": 2, "calm": 2, "death": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Philosopher's Stone",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"calm": 4, "death": 2},
+      "gain": {"gold": 4}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "gold": 4},
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Philosopher's Stone",
+      "player_id": 0
+    }
+  ]
+}

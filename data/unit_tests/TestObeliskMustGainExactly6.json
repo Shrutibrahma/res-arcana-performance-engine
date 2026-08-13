@@ -1,0 +1,44 @@
+{
+  "name": "TestObeliskMustGainExactly6",
+  "description": "When bought, must gain exactly 6 essences.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": ["Obelisk"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "starting_essences": [{"gold": 4}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Obelisk", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "Gain",
+        "card_name": "Obelisk",
+        "gain": {"elan": 5},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "Gain",
+        "card_name": "Obelisk",
+        "gain": {"elan": 7},
+        "player_id": 0
+      }
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Obelisk",
+      "gain": {"elan": 6},
+      "player_id": 0
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "TestSacredGrovePower1StoresLife",
+  "description": "Sacred Grove Power 1: Turn this AND turn a Creature to store 1 Life.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Sacred Grove"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Hawk"]],
+    "starting_essences": [{"life": 9, "calm": 5}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sacred Grove",
+      "pay": {"life": 8, "calm": 4},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 3},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Hawk",
+      "pay": {"life": 1, "calm": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Sacred Grove",
+      "power_index": 1,
+      "player_id": 0,
+      "target_name": "Hawk",
+      "gain": {"life": 1}
+    },
+    {"__type__": "AssertTurned", "card_name": "Sacred Grove", "player_id": 0},
+    {"__type__": "AssertTurned", "card_name": "Hawk", "player_id": 0},
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Sacred Grove",
+      "life": 1,
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 4}
+  ]
+}

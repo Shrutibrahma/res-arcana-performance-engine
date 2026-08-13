@@ -1,0 +1,39 @@
+{
+  "name": "TestAlchemyPowerFailsWhenTurned",
+  "description": "Alchemy Power 0 fails if already turned.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "starting_essences": [{"elan": 4, "life": 4}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Alchemy",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"elan": 4},
+      "gain": {"gold": 2}
+    },
+    {"__type__": "AssertTurned", "card_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Alchemy",
+        "power_index": 0,
+        "player_id": 0,
+        "pay": {"life": 4},
+        "gain": {"gold": 2}
+      }
+    }
+  ]
+}

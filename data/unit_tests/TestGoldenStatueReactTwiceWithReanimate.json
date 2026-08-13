@@ -1,0 +1,76 @@
+{
+  "name": "TestGoldenStatueReactTwiceWithReanimate",
+  "description": "React twice in same round by straightening with Reanimate magic item.\n\nThis tests that temp VP applies independently to each victory check:\n- First react: 5 base + 3 temp = 8 VP (no win)\n- Claim Temple: 7 base VP\n- Second react: 7 base + 3 temp = 10 VP (WIN!)",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Coral Castle"],
+    "monument_display": ["Golden Statue", "Temple"],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "starting_essences": [{"elan": 6, "life": 5, "calm": 5, "gold": 14}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Reanimate", "player_id": 0},
+    {
+      "__type__": "ClaimMonument",
+      "monument_name": "Golden Statue",
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Coral Castle",
+      "pay": {"elan": 5, "life": 5, "calm": 5},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 5},
+    {
+      "__type__": "UsePower",
+      "card_name": "Coral Castle",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 5}},
+    {
+      "__type__": "VictoryReact",
+      "card_name": "Golden Statue",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"gold": 3}
+    },
+    {"__type__": "AssertTurned", "card_name": "Golden Statue", "player_id": 0},
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 4}},
+    {
+      "__type__": "UsePower",
+      "card_name": "Reanimate",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Golden Statue",
+      "pay": {"elan": 1}
+    },
+    {
+      "__type__": "AssertTurned",
+      "card_name": "Golden Statue",
+      "turned": false,
+      "player_id": 0
+    },
+    {"__type__": "AssertTurned", "card_name": "Reanimate", "player_id": 0},
+    {"__type__": "ClaimMonument", "monument_name": "Temple", "player_id": 0},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 7},
+    {"__type__": "AssertPool", "player_id": 0, "gold": 3},
+    {"__type__": "Pass", "item_name": "Research", "player_id": 0},
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 5}},
+    {
+      "__type__": "VictoryReact",
+      "card_name": "Golden Statue",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"gold": 3}
+    },
+    {"__type__": "AssertPhase", "phase": {"__enum__": "GamePhase", "value": 6}},
+    {"__type__": "AssertVP", "player_id": 0, "vp": 10}
+  ]
+}

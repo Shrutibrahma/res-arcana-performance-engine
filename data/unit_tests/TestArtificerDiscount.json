@@ -1,0 +1,44 @@
+{
+  "name": "TestArtificerDiscount",
+  "description": "Artificer -1 discount on artifact placement.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Artificer"]],
+    "artifact_decks": [["Dwarven Pickaxe", "Magical Shard"]],
+    "starting_essences": [{"elan": 5}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Artificer", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dwarven Pickaxe",
+      "pay": {},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 5},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Dwarven Pickaxe",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Magical Shard",
+      "pay": {},
+      "player_id": 0
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 5},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Magical Shard",
+      "location": {"__enum__": "CardLocation", "value": 5}
+    }
+  ]
+}

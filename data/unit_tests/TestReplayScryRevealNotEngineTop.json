@@ -1,0 +1,1281 @@
+{
+  "num_players": 2,
+  "expansions": [
+    0
+  ],
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [
+      "Sorcerer's Bestiary",
+      "Coral Castle",
+      "Alchemist's Tower",
+      "Catacombs of the Dead",
+      "Cursed Forge"
+    ],
+    "monument_display": [
+      "Colossus",
+      "Temple"
+    ],
+    "monument_deck": [
+      "Hanging Gardens",
+      "Great Pyramid"
+    ],
+    "mage_options": [
+      [
+        "Healer",
+        "Seer"
+      ],
+      [
+        "Artificer",
+        "Necromancer"
+      ]
+    ],
+    "artifact_decks": [
+      [
+        "Prism",
+        "Cursed Skull",
+        "Corrupt Altar",
+        "Nightingale",
+        "Sea Serpent",
+        "Dragon Egg",
+        "Horn of Plenty",
+        "Ring of Midas"
+      ],
+      [
+        "Fiery Whip",
+        "Dwarven Pickaxe",
+        "Earth Dragon",
+        "Wind Dragon",
+        "Guard Dog",
+        "Tree of Life",
+        "Vault",
+        "Dragon Bridle"
+      ]
+    ]
+  },
+  "steps": [
+    {
+      "__type__": "ChooseMage",
+      "mage_name": "Seer",
+      "player_id": 0
+    },
+    {
+      "__type__": "ChooseMage",
+      "mage_name": "Artificer",
+      "player_id": 1
+    },
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Research",
+      "player_id": 1
+    },
+    {
+      "__type__": "ChooseMagicItem",
+      "item_name": "Divination",
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Divination",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Sea Serpent",
+        "Horn of Plenty",
+        "Ring of Midas"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "DiscardChoice",
+      "card_names": [
+        "Sea Serpent",
+        "Cursed Skull",
+        "Corrupt Altar"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dwarven Pickaxe",
+      "pay": {},
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {
+        "__enum__": "DeckType",
+        "value": 0
+      }
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": [
+        "Nightingale",
+        "Dragon Egg",
+        "Cursed Skull"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryChoice",
+      "player_id": 0,
+      "scry_order": [
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Research",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "calm": 1
+      }
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Dragon Bridle"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Prism",
+      "pay": {},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Dwarven Pickaxe",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "elan": 1
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Prism",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "elan": 1
+      },
+      "gain": {
+        "life": 2
+      }
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Fiery Whip",
+      "gain": {
+        "gold": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Ring of Midas",
+      "pay": {
+        "life": 1,
+        "gold": 1
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Alchemist's Tower",
+      "pay": {
+        "gold": 3
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Reanimate",
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Vault"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Research",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "known_cards": [
+        "Nightingale"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Ring of Midas",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Alchemist's Tower",
+      "gain": {
+        "elan": 3
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Dragon Bridle",
+      "pay": {
+        "elan": 1,
+        "life": 1,
+        "death": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {
+        "__enum__": "DeckType",
+        "value": 0
+      }
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": [
+        "Sea Serpent"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryChoice",
+      "player_id": 0,
+      "scry_order": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Vault",
+      "gain": {
+        "elan": 2
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Research",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "calm": 1
+      }
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "known_cards": [
+        "Cursed Skull"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Earth Dragon",
+      "pay": {
+        "elan": 3
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Nightingale",
+      "gain": {
+        "life": 2
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossChoice",
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      }
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Horn of Plenty",
+      "pay": {
+        "gold": 2
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Reanimate",
+      "power_index": 0,
+      "player_id": 1,
+      "target_name": "Earth Dragon",
+      "pay": {
+        "elan": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Prism",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "calm": 1
+      },
+      "gain": {
+        "life": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossChoice",
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Horn of Plenty",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {
+        "life": 2,
+        "death": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Calm/Elan",
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Wind Dragon"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Cursed Skull",
+      "pay": {
+        "death": 2
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Cursed Skull",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 1
+      },
+      "gain": {
+        "elan": 3
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Reanimate",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "known_cards": [
+        "Dragon Egg"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Cursed Skull",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Ring of Midas",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Calm/Elan",
+      "gain": {
+        "calm": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Alchemist's Tower",
+      "gain": {
+        "elan": 1,
+        "calm": 2
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Horn of Plenty",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {
+        "life": 3
+      }
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Wind Dragon",
+      "pay": {
+        "elan": 1,
+        "calm": 3
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Prism",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "elan": 1
+      },
+      "gain": {
+        "death": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Wind Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossChoice",
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Reanimate",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Horn of Plenty",
+      "pay": {
+        "death": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Divination",
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Guard Dog"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Horn of Plenty",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {
+        "life": 2,
+        "death": 1
+      }
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Sorcerer's Bestiary",
+      "pay": {
+        "elan": 2,
+        "life": 4,
+        "calm": 2,
+        "death": 2
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {
+        "__enum__": "DeckType",
+        "value": 0
+      }
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": [
+        "Nightingale",
+        "Corrupt Altar"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryChoice",
+      "player_id": 0,
+      "scry_order": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "__type__": "DiscardForEssences",
+      "card_name": "Dragon Egg",
+      "gain": {
+        "life": 2
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Cursed Skull",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 1
+      },
+      "gain": {
+        "calm": 3
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Protection",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "known_cards": [
+        "Sea Serpent"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Cursed Skull",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Ring of Midas",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Alchemist's Tower",
+      "gain": {
+        "elan": 2,
+        "death": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Wind Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Protection",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Prism",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 1
+      },
+      "gain": {
+        "life": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Horn of Plenty",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {
+        "life": 1,
+        "calm": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Divination",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Tree of Life",
+        "Vault",
+        "Fiery Whip"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "DiscardChoice",
+      "card_names": [
+        "Guard Dog",
+        "Tree of Life",
+        "Vault"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Sea Serpent",
+      "pay": {
+        "life": 3,
+        "calm": 6
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Fiery Whip",
+      "pay": {
+        "elan": 2,
+        "death": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Fiery Whip",
+      "power_index": 1,
+      "player_id": 1,
+      "target_name": "Wind Dragon",
+      "gain": {
+        "elan": 1,
+        "death": 9
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Reanimate",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "known_cards": [
+        "Nightingale"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Catacombs of the Dead",
+      "pay": {
+        "death": 9
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Dwarven Pickaxe",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "elan": 1
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Catacombs of the Dead",
+      "power_index": 1,
+      "player_id": 1,
+      "gain": {
+        "death": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Alchemy",
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Tree of Life"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Ring of Midas",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Alchemist's Tower",
+      "gain": {
+        "elan": 1,
+        "life": 2
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Catacombs of the Dead",
+      "player_id": 1,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 4
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Prism",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "calm": 1
+      },
+      "gain": {
+        "life": 1,
+        "calm": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Nightingale",
+      "pay": {
+        "life": 1,
+        "calm": 1
+      },
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Catacombs of the Dead",
+      "power_index": 1,
+      "player_id": 1,
+      "gain": {
+        "death": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Horn of Plenty",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {
+        "life": 3
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Dwarven Pickaxe",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "elan": 1
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Reanimate",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Horn of Plenty",
+      "pay": {
+        "life": 1
+      }
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Tree of Life",
+      "pay": {
+        "life": 1,
+        "death": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Horn of Plenty",
+      "power_index": 0,
+      "player_id": 0,
+      "gain": {
+        "life": 3
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Tree of Life",
+      "power_index": 0,
+      "player_id": 1,
+      "gain": {
+        "life": 3
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Fiery Whip",
+      "power_index": 1,
+      "player_id": 1,
+      "target_name": "Tree of Life",
+      "gain": {
+        "elan": 2,
+        "calm": 2,
+        "death": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Alchemy",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "elan": 1,
+        "life": 2,
+        "calm": 1
+      },
+      "gain": {
+        "gold": 2
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {
+        "__enum__": "DeckType",
+        "value": 1
+      }
+    },
+    {
+      "__type__": "ResolveScryReveal",
+      "revealed_cards": [
+        "Hanging Gardens",
+        "Great Pyramid"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryChoice",
+      "player_id": 0,
+      "scry_order": [
+        0,
+        1
+      ]
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Alchemist's Tower",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "elan": 1,
+        "life": 1,
+        "calm": 1,
+        "death": 1
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {
+        "life": 2
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "ClaimMonument",
+      "monument_name": "Temple",
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveMonumentReveal",
+      "monument_name": "Hanging Gardens",
+      "player_id": 1
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Ring of Midas",
+      "power_index": 1,
+      "player_id": 0,
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Research",
+      "player_id": 1
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "revealed_cards": [
+        "Guard Dog"
+      ],
+      "player_id": 1
+    },
+    {
+      "__type__": "Pass",
+      "item_name": "Protection",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveDrawReveal",
+      "known_cards": [
+        "Corrupt Altar"
+      ],
+      "player_id": 0
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Ring of Midas",
+      "player_id": 0,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 3
+      }
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Alchemist's Tower",
+      "player_id": 1,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 4
+      }
+    },
+    {
+      "__type__": "Gain",
+      "card_name": "Alchemist's Tower",
+      "gain": {
+        "calm": 2,
+        "death": 1
+      },
+      "player_id": 1
+    },
+    {
+      "__type__": "TakeStored",
+      "card_name": "Catacombs of the Dead",
+      "player_id": 1,
+      "decision": {
+        "__enum__": "CollectDecision",
+        "value": 4
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Earth Dragon",
+      "power_index": 0,
+      "player_id": 1
+    },
+    {
+      "__type__": "LifeLossReact",
+      "card_name": "Protection",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Seer",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "ScryDeckChoice",
+      "player_id": 0,
+      "scry_target": {
+        "__enum__": "DeckType",
+        "value": 1
+      }
+    },
+    {
+      "__type__": "ScryChoice",
+      "player_id": 0,
+      "scry_order": [
+        0
+      ]
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Fiery Whip",
+      "power_index": 1,
+      "player_id": 1,
+      "target_name": "Earth Dragon",
+      "gain": {
+        "elan": 3,
+        "life": 2,
+        "calm": 2,
+        "death": 2
+      }
+    },
+    {
+      "__type__": "ClaimTopMonument",
+      "player_id": 0
+    },
+    {
+      "__type__": "ResolveMonumentDraw",
+      "monument_name": "Great Pyramid",
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Alchemist's Tower",
+      "power_index": 0,
+      "player_id": 1,
+      "pay": {
+        "elan": 1,
+        "life": 1,
+        "calm": 1,
+        "death": 1
+      },
+      "gain": {
+        "gold": 1
+      }
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Sorcerer's Bestiary",
+      "power_index": 0,
+      "player_id": 0
+    },
+    {
+      "__type__": "AssertVP",
+      "player_id": 0,
+      "vp": 10
+    },
+    {
+      "__type__": "AssertVP",
+      "player_id": 1,
+      "vp": 8
+    },
+    {
+      "__type__": "AssertWinners",
+      "winner_ids": [
+        0
+      ]
+    }
+  ],
+  "comment": "Real-game replay (scrubbed of usernames/elos/logs/game_id). Triggers a reveal at step 10 whose card set is not the top of the engine's setup-order deck \u2014 exercises the contract that `execute(ResolveScryReveal)` accepts any reveal drawn from the unknown pool, not just the engine's deterministic prediction."
+}

@@ -1,0 +1,41 @@
+{
+  "name": "TestMermaidPowerCalmOnVaultFails",
+  "description": "Mermaid Power: Storing Calm on Vault is legal even though Vault only benefits from Gold.\n\nRust prunes this as a search optimization (storage classification).",
+  "skip_rust": true,
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Mermaid", "Vault"]],
+    "starting_essences": [{"elan": 1, "life": 2, "calm": 3, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Mermaid",
+      "pay": {"life": 2, "calm": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Vault",
+      "pay": {"elan": 1, "gold": 1},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Mermaid",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Vault",
+      "pay": {"calm": 1}
+    }
+  ]
+}

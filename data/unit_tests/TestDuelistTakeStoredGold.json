@@ -1,0 +1,42 @@
+{
+  "name": "TestDuelistTakeStoredGold",
+  "description": "Stored gold can be taken during collect phase.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Duelist"]],
+    "starting_essences": [{"death": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Duelist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "UsePower",
+      "card_name": "Duelist",
+      "power_index": 0,
+      "player_id": 0,
+      "pay": {"death": 1},
+      "gain": {"gold": 1}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Duelist",
+      "gold": 1,
+      "player_id": 0
+    },
+    {"__type__": "Pass", "item_name": "Transmutation", "player_id": 0},
+    {
+      "__type__": "TakeStored",
+      "card_name": "Duelist",
+      "player_id": 0,
+      "decision": {"__enum__": "CollectDecision", "value": 3}
+    },
+    {"__type__": "AssertPool", "player_id": 0, "elan": 2, "gold": 1},
+    {"__type__": "AssertEssencesOnCard", "card_name": "Duelist", "player_id": 0}
+  ]
+}

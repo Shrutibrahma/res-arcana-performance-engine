@@ -1,0 +1,35 @@
+{
+  "name": "TestJeweledStatuettePower1RequiresInPlay",
+  "description": "Destroy power (Power 1) only works on artifacts in play, not in hand.\n\nPowers can only be used on components in play. CostDestroyComponent(SELF)\nrequires the component to be in play to destroy it.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": [],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"], ["Transmuter"]],
+    "artifact_decks": [["Jeweled Statuette"], []],
+    "starting_essences": [{}, {}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "AssertLocation",
+      "card_name": "Jeweled Statuette",
+      "location": {"__enum__": "CardLocation", "value": 4}
+    },
+    {
+      "__type__": "ActionFails",
+      "action": {
+        "__type__": "UsePower",
+        "card_name": "Jeweled Statuette",
+        "power_index": 1,
+        "player_id": 0,
+        "gain": {"elan": 1, "gold": 2}
+      }
+    }
+  ]
+}

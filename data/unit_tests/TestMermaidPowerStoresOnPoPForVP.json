@@ -1,0 +1,49 @@
+{
+  "name": "TestMermaidPowerStoresOnPoPForVP",
+  "description": "Mermaid Power stores essence on PoP that scores VP for it.",
+  "num_players": 1,
+  "expansions": [0],
+  "draft": false,
+  "setup": {
+    "__type__": "ResolveGameSetup",
+    "places_of_power": ["Dragon's Lair"],
+    "monument_display": [],
+    "monument_deck": [],
+    "mage_options": [["Alchemist"]],
+    "artifact_decks": [["Mermaid"]],
+    "starting_essences": [{"elan": 3, "life": 5, "calm": 5, "death": 3, "gold": 1}]
+  },
+  "steps": [
+    {"__type__": "ChooseMage", "mage_name": "Alchemist", "player_id": 0},
+    {"__type__": "ChooseMagicItem", "item_name": "Alchemy", "player_id": 0},
+    {
+      "__type__": "ClaimPlaceOfPower",
+      "pop_name": "Dragon's Lair",
+      "pay": {"elan": 3, "life": 3, "calm": 3, "death": 3},
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 1},
+    {
+      "__type__": "PlaceArtifact",
+      "artifact_name": "Mermaid",
+      "pay": {"life": 2, "calm": 2},
+      "player_id": 0
+    },
+    {
+      "__type__": "UsePower",
+      "card_name": "Mermaid",
+      "power_index": 0,
+      "player_id": 0,
+      "target_name": "Dragon's Lair",
+      "pay": {"gold": 1}
+    },
+    {
+      "__type__": "AssertEssencesOnCard",
+      "card_name": "Dragon's Lair",
+      "gold": 1,
+      "player_id": 0
+    },
+    {"__type__": "AssertVP", "player_id": 0, "vp": 2},
+    {"__type__": "AssertTurned", "card_name": "Mermaid", "player_id": 0}
+  ]
+}
