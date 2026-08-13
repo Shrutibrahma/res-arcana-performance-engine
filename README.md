@@ -1,4 +1,28 @@
-﻿# ABC
+﻿# Res Arcana Performance Engine
+
+## Overview
+
+C++20 implementation of the Res Arcana performance exercise with a Python reference engine, harness, data files, optimized solution code, and submission writeup. The project ports and optimizes game-engine logic and search/evaluation behavior.
+
+## Tech Stack
+
+C++20, Python, JSON, shell build script
+
+## Repository Contents
+
+This repository contains the source code and related files for the project. Existing project documentation, submissions, scripts, source folders, data/config files, and supporting assets are preserved below.
+
+## Notes
+
+- Canonical public repository: https://github.com/Shrutibrahma/res-arcana-performance-engine
+- Original local path: `C:\Users\shrut\Downloads\Shruti_Exam\ABC`
+- README rewritten during portfolio cleanup for clearer presentation.
+
+---
+
+## Original README
+
+# ABC
 
 ## Overview
 
@@ -260,5 +284,6 @@ submission.
 
 For the output of the evaluation function, you must use `float64` to match
 Python and avoid rounding errors.
+
 
 
